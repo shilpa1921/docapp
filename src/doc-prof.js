@@ -39,8 +39,8 @@ export default class DoctorProfessionalInfo extends React.Component {
         axios.post("/register-doc-info", this.state).then(({ data }) => {
             console.log("data: ", data);
             if (data.success) {
-                // location.replace("/");
-                this.props.visibilityFunction(data.success);
+                location.replace("/doc-address");
+                // this.props.visibilityFunction(data.success);
             } else if (data.duplicate) {
                 this.setState({
                     error1: true,
@@ -55,7 +55,7 @@ export default class DoctorProfessionalInfo extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="reg-doc1">
                 <h2 id="heading">Please Fill the all fields</h2>
                 {this.state.error && <div>Oops something went wrong!</div>}
 
@@ -68,6 +68,15 @@ export default class DoctorProfessionalInfo extends React.Component {
                     onChange={(e) => this.handleChange(e)}
                 />
                 <br></br>
+                <select
+                    className="input-field-div"
+                    name="insurence"
+                    onChange={(e) => this.handleChange(e)}
+                >
+                    <option>Do you accept insurence card</option>
+                    <option value="yes">yes</option>
+                    <option value="no">No</option>
+                </select>
                 <select
                     className="input-field-div"
                     name="category_id"
@@ -130,7 +139,7 @@ export default class DoctorProfessionalInfo extends React.Component {
                     className="input-field-div"
                     onClick={() => this.submit()}
                 >
-                    Register!
+                    Submit
                 </button>
             </div>
         );

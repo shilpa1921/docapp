@@ -12,17 +12,6 @@ class AutoFillAddress extends React.Component {
     }
 
     componentDidMount() {
-        // this.autocomplete = new google.maps.places.Autocomplete(
-        //     document.getElementById("autocomplete"),
-        //     {}
-        // );
-
-        // this.autocomplete.addListener("place_changed", this.handlePlaceSelect);
-
-        // this.autocomplete.setComponentRestrictions({
-        //     country: ["de"],
-        // });
-
         var options = {
             // types: ["(regions)"],
             componentRestrictions: { country: "de" },
@@ -35,14 +24,15 @@ class AutoFillAddress extends React.Component {
     initialState() {
         return {
             name: "",
-            street_address: "",
+            street: "",
+            house_no: "",
             city: "",
             state: "",
             country: "",
             zip_code: "",
             lat: "",
             lng: "",
-            googleMapLink: "",
+            error: false,
         };
     }
 
@@ -53,6 +43,16 @@ class AutoFillAddress extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        axios.post("/auto-address", this.state).then((res) => {
+            console.log("response in /auto-address", res);
+            if (res.data.success) {
+                location.replace("/doc-list");
+            } else {
+                this.setState({
+                    error: true,
+                });
+            }
+        });
     }
 
     handlePlaceSelect() {
@@ -65,7 +65,8 @@ class AutoFillAddress extends React.Component {
         let location = addressObject.geometry;
         this.setState({
             name: addressObject.name,
-            street_address: `${address[1].long_name} ${address[0].long_name}`,
+            street: address[1].long_name,
+            house_no: address[0].long_name,
             city: address[3].long_name,
             state: address[4].long_name,
             country: address[5].long_name,
@@ -77,8 +78,11 @@ class AutoFillAddress extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="reg-doc">
                 <h1>Fill your clinic address</h1>
+                {this.state.error && (
+                    <h2>You have already entered your address</h2>
+                )}
                 <form onSubmit={this.handleSubmit}>
                     <input
                         className="input-field-div"
@@ -98,9 +102,17 @@ class AutoFillAddress extends React.Component {
                     <br></br>
                     <input
                         className="input-field-div"
-                        name={"street_address"}
-                        value={this.state.street_address}
+                        name={"street"}
+                        value={this.state.street}
                         placeholder={"Street Address"}
+                        onChange={this.handleChange}
+                    />
+                    <br></br>
+                    <input
+                        className="input-field-div"
+                        name={"house_no"}
+                        value={this.state.house_no}
+                        placeholder={"House no"}
                         onChange={this.handleChange}
                     />
                     <br></br>

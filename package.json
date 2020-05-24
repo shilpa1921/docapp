@@ -35,6 +35,8 @@
         "react": "^16.9.0-alpha.0",
         "react-dom": "^16.9.0-alpha.0",
         "react-google-autocomplete": "^1.2.4",
+        "react-native-geocoding": "^0.4.0",
+        "react-native-geolocation-service": "^4.0.2",
         "react-redux": "^7.1.0",
         "react-router": "^5.0.1",
         "react-router-dom": "^5.0.1",

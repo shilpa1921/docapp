@@ -3,13 +3,15 @@ import { HashRouter, Link } from "react-router-dom";
 
 // pass 'props' as an argument to get access to the info being passed down from the parent (App)
 // we can also use destructuring to pull up the properties inside props
-export default function displayDocInfo({
+export default function DisplayDocInfo({
     first,
     last,
     imageUrl,
     toggleModal,
     id,
     city,
+    languages,
+    website_link,
 }) {
     console.log("props in profilepic: ", id);
 
@@ -17,22 +19,27 @@ export default function displayDocInfo({
     let name = first + " " + last;
 
     return (
-        <Link to={`/user/${id}`}>
-            <div id="picandtext">
+        <div id="picandtext">
+            <Link to={`/user/${id}`}>
                 <img
                     className="profilepic1"
                     src={imageUrl}
                     onClick={toggleModal}
                     alt={name}
                 />
-                <div id="list">
-                    <h3>
-                        {" "}
-                        {first} {last}
-                    </h3>
-                    <h3>{city}</h3>
-                </div>
+            </Link>
+            <div id="list">
+                <h3>
+                    {" "}
+                    Dr.{first} {last}
+                </h3>
+                <h3>Spoken languages:{languages}</h3>
             </div>
-        </Link>
+            <div>
+                <h3>
+                    Website:<a href={website_link}>{website_link}</a>
+                </h3>
+            </div>
+        </div>
     );
 }

@@ -49,6 +49,15 @@ main {
     padding: 25px;
 }
 
+.reg-doc1 {
+    text-align: center;
+    background-color: rgb(133, 189, 31, 0.5);
+    border-radius: 15px;
+    border: darkkhaki solid 2px;
+
+    padding: 25px;
+}
+
 .input-field-div {
     margin: 15px 40px;
     border: none;
@@ -162,4 +171,41 @@ button {
 #pic-in-profile {
     height: 200px;
     width: 200px;
+}
+#loc {
+    height: 30px;
+    width: 30px;
+}
+
+#p-loc {
+    margin: 0;
+}
+#input-icon {
+    display: grid;
+    grid-template-columns: 200px 300px 50px;
+}
+
+#picandtext {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    grid-gap: 10px;
+    margin-bottom: 30px;
+    transition: transform 0.2s;
+    border: springgreen solid 2px;
+    border-radius: 15px;
+}
+#picandtext:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    border: salmon solid 2px;
+}
+
+.profilepic1 {
+    height: 150px;
+    width: 150px;
+    margin: 20px;
+}
+#pic-in-otherprofile {
+    height: 250px;
+    width: 300px;
 }

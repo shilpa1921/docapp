@@ -27,7 +27,7 @@ export default class Login extends React.Component {
         axios.post("/login", this.state).then(({ data }) => {
             console.log("data: ", data);
             if (data.success) {
-                location.replace("/users");
+                location.replace("/doc-list");
             } else {
                 this.setState({
                     error: true,

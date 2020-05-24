@@ -348,21 +348,15 @@ app.post("/user/:id", (req, res) => {
     console.log("id in other profile", req.params.id);
     let id = req.params.id;
 
-    if (id == req.session.userId) {
-        res.json({ selfuser: true });
-    } else {
-        db.getDoctor(id)
-            .then((result) => {
-                console.log("result in /user:id: ", result.rows[0]);
-                if (result.rows[0] == undefined) {
-                    res.json({ noMatch: true });
-                }
-                res.json(result.rows[0]);
-            })
-            .catch((err) => {
-                console.log("ERROR in /user:id getUserInfo: ", err);
-            });
-    }
+    db.getDoctor(id)
+        .then((result) => {
+            console.log("result in /user:id: ", result.rows[0]);
+
+            res.json(result.rows[0]);
+        })
+        .catch((err) => {
+            console.log("ERROR in /user:id getUserInfo: ", err);
+        });
 });
 
 app.post(`/friendshipstatus/:id`, (req, res) => {
@@ -428,12 +422,12 @@ app.post("/findpeople", (req, res) => {
     console.log("shilpa in find people", req.body.user);
     let id = req.session.userId;
     if (req.body.user) {
-        db.getMatchingActors(req.body.user, id).then((results) => {
+        db.getMatchingDoctors(req.body.user, id).then((results) => {
             console.log("results in findpeople search", results.rows);
             res.json(results.rows);
         });
     } else {
-        db.recentjoiners().then((result) => {
+        db.allDoctors().then((result) => {
             console.log("results in findpeople", result.rows);
             res.json(result.rows);
         });
@@ -573,6 +567,14 @@ app.post("/register-doc-info", (req, res) => {
     console.log("req.body in /register-doc-info", req.body);
     userId = req.session.userId;
     qualification = req.body.qualification;
+    insurence_card = req.body.insurence;
+    var insurence;
+
+    if (insurence_card == "yes") {
+        insurence = true;
+    } else {
+        insurence = false;
+    }
     category_id = req.body.category_id;
     dob = req.body.dob;
     office_number = req.body.office_number;
@@ -587,11 +589,44 @@ app.post("/register-doc-info", (req, res) => {
         office_number,
         personal_number,
         spoken_lang,
-        website_link
+        website_link,
+        insurence
     ).then((result) => {
         console.log("result in/register-doc-info ", result);
         res.json({ success: true });
     });
+});
+
+app.post("/auto-address", (req, res) => {
+    console.log("req.body in /auto-address", req.body);
+    userId = req.session.userId;
+    street = req.body.street;
+    house_no = req.body.house_no;
+    city = req.body.city;
+    state = req.body.state;
+    country = req.body.country;
+    zip_code = req.body.zip_code;
+    lat = req.body.lat;
+    lng = req.body.lng;
+    db.addDocAddress(
+        userId,
+        street,
+        house_no,
+        city,
+        state,
+        country,
+        zip_code,
+        lat,
+        lng
+    )
+        .then((result) => {
+            console.log("result in add doc address", result);
+            res.json({ success: true });
+        })
+        .catch((err) => {
+            console.log("error in add doc address", err);
+            res.json({ success: false });
+        });
 });
 app.listen(8080, function () {
     console.log("I'm listening.");

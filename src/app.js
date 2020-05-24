@@ -7,20 +7,20 @@ import Uploader from "./uploader";
 // import Logo from "./logo";
 import DoctorProfie from "./doc-profile";
 
-// import OtherProfile from "./other-profile";
+import DoctorPage from "./doc-page";
 // import Logout from "./logout";
 
 // import Category from "./category";
 // import Footer from "./footer";
 
-// import ParlorForm from "./autoadd";
+import AutoFillAddress from "./auto-add";
 
 // import SearchLocation from "./knowYourLocation";
 // import LocationDemo from "./location";
 
 import { HashRouter, Link } from "react-router-dom";
 
-// import FindPeople from "./find-people";
+import FindDoctor from "./find-doc";
 
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -98,20 +98,24 @@ export default class App extends React.Component {
                         )}
                     />
 
-                    {/* <Route exact path="/user/:id" component={OtherProfile} />
-                    <Route
+                    <Route exact path="/user/:id" component={DoctorPage} />
+                    {/* <Route
                         exact
                         path="/category"
                         render={() => <Category id={this.state.id} />}
-                    />
-                    <Route exact path="/users" component={FindPeople} />
-                    <Route exact path="/autoadd" component={ParlorForm} />
+                    /> */}
+                    <Route exact path="/doc-list" component={FindDoctor} />
+                    {/* 
                     <Route
                         exact
                         path="/test-location"
                         component={SearchLocation}
+                    /> */}
+                    <Route
+                        exact
+                        path="/doc-address"
+                        component={AutoFillAddress}
                     />
-                    <Route exact path="/test-loc" component={LocationDemo} /> */}
 
                     {this.state.uploaderIsVisible && (
                         <div id="upload-container">

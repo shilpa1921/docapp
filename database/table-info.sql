@@ -17,6 +17,19 @@
       pic_url TEXT,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
  );
+  CREATE TABLE doctor_address(
+      id SERIAL PRIMARY KEY,
+      Doctor_id INT NOT NULL  UNIQUE  REFERENCES doctor_info(id),
+      street VARCHAR(255) NOT NULL,
+      house_no VARCHAR(255),
+      city VARCHAR(255),
+      state VARCHAR(255),
+      country VARCHAR(255) ,
+      pincode VARCHAR(255) ,
+      latitude FLOAT,
+      longitude FLOAT,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+ );
 
   DROP TABLE IF EXISTS specialization;
 
