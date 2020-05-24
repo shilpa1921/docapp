@@ -1,0 +1,160 @@
+body {
+    background-color: rgb(241, 227, 192, 0.6);
+}
+* {
+    box-sizing: border-box;
+}
+
+main {
+    min-height: 100vh;
+    padding: 20px;
+    margin-top: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+#welcome h1 {
+    text-align: center;
+    color: darkred;
+}
+#main-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+#main-page-link {
+    font-size: 20px;
+    font-weight: 500;
+}
+#doc-box {
+    border: darkkhaki solid 2px;
+    background-color: rgb(133, 189, 31, 0.5);
+    border-radius: 15px;
+}
+#pat-box {
+    border: darkkhaki solid 2px;
+    border-radius: 15px;
+    background-color: rgb(133, 189, 31, 0.5);
+}
+
+.reg-doc {
+    text-align: center;
+    background-color: rgb(133, 189, 31, 0.5);
+    border-radius: 15px;
+    border: darkkhaki solid 2px;
+    max-width: 40%;
+    margin-left: 30%;
+
+    padding: 25px;
+}
+
+.input-field-div {
+    margin: 15px 40px;
+    border: none;
+    position: relative;
+    padding-left: 20px;
+    width: 250px;
+    height: 30px;
+    border-radius: 10px;
+}
+input:focus {
+    background-color: lightcyan;
+}
+.login {
+    text-align: center;
+    background-color: rgb(133, 189, 31, 0.5);
+    border: darkkhaki solid 2px;
+    border-radius: 15px;
+    max-width: 50%;
+    margin-left: 25%;
+    padding: 25px;
+}
+
+#head {
+    /* background-color: lightcoral; */
+    margin-bottom: auto;
+}
+#register {
+    /* background-color: lightcoral; */
+    margin-top: 25px;
+}
+
+button {
+    background-color: #000;
+    border: 1px solid #000;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 17px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#desc-link {
+    font-size: 20px;
+}
+
+#password-reset {
+    text-align: center;
+    background-color: rgb(133, 189, 31, 0.5);
+    border: darkkhaki solid 2px;
+    border-radius: 15px;
+    max-width: 50%;
+    margin-left: 25%;
+    padding: 25px;
+}
+#profile-page {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#upload {
+    border: lightseagreen solid 3px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    margin: 30px;
+    padding: 0;
+    width: 50%;
+    left: 250px;
+    position: absolute;
+    box-sizing: border-box;
+}
+#file {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#close {
+    padding-left: 96%;
+    padding-top: 0;
+    margin-top: 0;
+    font-size: 30px;
+    font-weight: 600;
+    position: relative;
+}
+#upload-container {
+    border: 1px blue solid;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#upload-modal-div {
+    border: 2px grey solid;
+    border-radius: 20px;
+
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
