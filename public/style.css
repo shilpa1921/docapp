@@ -107,7 +107,7 @@ button {
 #profile-page {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 #upload {
     border: lightseagreen solid 3px;
@@ -157,4 +157,9 @@ button {
     padding: 30px;
     text-align: center;
     position: relative;
+}
+
+#pic-in-profile {
+    height: 200px;
+    width: 200px;
 }

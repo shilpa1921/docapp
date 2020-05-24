@@ -78,7 +78,7 @@ class AutoFillAddress extends React.Component {
     render() {
         return (
             <div>
-                <h1>Add New Parlor</h1>
+                <h1>Fill your clinic address</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input
                         className="input-field-div"

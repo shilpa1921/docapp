@@ -10,7 +10,7 @@ const db = require("./db");
 
 const csurf = require("csurf");
 const s3 = require("./s3");
-// const config = require("./config.json");
+const config = require("./config.json");
 const multer = require("multer");
 const path = require("path");
 const uidSafe = require("uid-safe");
@@ -122,10 +122,8 @@ app.post("/register-doc", (req, res) => {
     var first_name = req.body.first;
     var last_name = req.body.last;
     var emailadd = req.body.email;
-    var qulification = req.body.qulification;
-
     var password = req.body.password;
-    var category = req.body.category;
+
     console.log("req.body.password", req.body.password);
     var pass;
     if (req.body.password) {
@@ -143,8 +141,7 @@ app.post("/register-doc", (req, res) => {
                     first_name,
                     last_name,
                     emailadd,
-                    qulification,
-                    category,
+
                     pass
                 )
                     .then((results) => {
@@ -562,6 +559,38 @@ app.post("/userLoction", (req, res) => {
     ).then((result) => {
         console.log("user address", result);
         res.json(result.rows);
+    });
+});
+
+app.post("/specializationList", (req, res) => {
+    db.getSpecializationList().then((result) => {
+        console.log("result in specialization list", result.rows);
+        res.json(result.rows);
+    });
+});
+
+app.post("/register-doc-info", (req, res) => {
+    console.log("req.body in /register-doc-info", req.body);
+    userId = req.session.userId;
+    qualification = req.body.qualification;
+    category_id = req.body.category_id;
+    dob = req.body.dob;
+    office_number = req.body.office_number;
+    personal_number = req.body.personal_number;
+    spoken_lang = req.body.spoken_lang;
+    website_link = req.body.website_link;
+    db.updateDocInfo(
+        userId,
+        qualification,
+        category_id,
+        dob,
+        office_number,
+        personal_number,
+        spoken_lang,
+        website_link
+    ).then((result) => {
+        console.log("result in/register-doc-info ", result);
+        res.json({ success: true });
     });
 });
 app.listen(8080, function () {

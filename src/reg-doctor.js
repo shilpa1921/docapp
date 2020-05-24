@@ -53,7 +53,7 @@ export default class RegistrationDoctor extends React.Component {
                     className="input-field-div"
                     name="first"
                     autoComplete="off"
-                    placeholder="first"
+                    placeholder="First name"
                     required
                     onChange={(e) => this.handleChange(e)}
                 />
@@ -62,46 +62,34 @@ export default class RegistrationDoctor extends React.Component {
                     className="input-field-div"
                     name="last"
                     autoComplete="off"
-                    placeholder="last"
+                    placeholder="Last name"
                     required
                     onChange={(e) => this.handleChange(e)}
                 />
-                <br></br>
                 <input
                     className="input-field-div"
                     name="email"
                     autoComplete="off"
-                    placeholder="email"
+                    placeholder="Email id "
                     required
                     onChange={(e) => this.handleChange(e)}
                 />
-                <br></br>
-                <input
-                    className="input-field-div"
-                    name="qulification"
-                    autoComplete="off"
-                    placeholder="Qulification"
-                    required
-                    onChange={(e) => this.handleChange(e)}
-                />
-                <br></br>
 
-                <select
-                    className="input-field-div"
-                    name="category"
-                    onChange={(e) => this.handleChange(e)}
-                    id="myList"
-                >
-                    <option value="Dentist">Dentist</option>
-                    <option value="Eye specialist">Eye specialist</option>
-                    <option value="Dermatologists">Dermatologists</option>
-                    <option value="Psychiatrists">Psychiatrists</option>
-                </select>
                 <br></br>
                 <input
                     className="input-field-div"
                     name="password"
-                    placeholder="password"
+                    placeholder="Password"
+                    autoComplete="off"
+                    type="password"
+                    required
+                    onChange={(e) => this.handleChange(e)}
+                />
+                <br></br>
+                <input
+                    className="input-field-div"
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
                     autoComplete="off"
                     type="password"
                     required
@@ -111,7 +99,7 @@ export default class RegistrationDoctor extends React.Component {
                 <button onClick={() => this.submit()}>Register!</button>
                 <HashRouter>
                     <div id="desc-link">
-                        If you have an account?{" "}
+                        If you already have an account?{" "}
                         <Link to="/log-doc">Log in here!</Link>
                     </div>
                 </HashRouter>
