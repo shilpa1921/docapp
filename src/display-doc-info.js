@@ -12,6 +12,9 @@ export default function DisplayDocInfo({
     city,
     languages,
     website_link,
+    street,
+    house_no,
+    pincode,
 }) {
     console.log("props in profilepic: ", id);
 
@@ -36,9 +39,12 @@ export default function DisplayDocInfo({
                 <h3>Spoken languages:{languages}</h3>
             </div>
             <div>
-                <h3>
+                <h4>
                     Website:<a href={website_link}>{website_link}</a>
-                </h3>
+                </h4>
+                <h4>
+                    {street} {house_no} {city} {pincode}
+                </h4>
             </div>
         </div>
     );

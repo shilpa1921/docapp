@@ -12,6 +12,28 @@ module.exports.addData = (first_name, last_name, emailadd, password) => {
         [first_name, last_name, emailadd, password]
     );
 };
+module.exports.getpass = (email) => {
+    return db
+        .query(`SELECT * FROM users WHERE email = $1;`, [email])
+        .then((results) => {
+            console.log("result from getpass in db.js", results);
+            return results;
+        })
+        .catch((err) => {
+            console.log("errrrrrrr", err);
+        });
+};
+module.exports.getpassdoc = (email) => {
+    return db
+        .query(`SELECT * FROM doctor_info WHERE email_id = $1;`, [email])
+        .then((results) => {
+            console.log("result from getpass in db.js", results);
+            return results;
+        })
+        .catch((err) => {
+            console.log("errrrrrrr", err);
+        });
+};
 
 module.exports.addDataToDoctorinfo = (
     first_name,
@@ -106,7 +128,9 @@ module.exports.getMatchingDoctors = (val, id) => {
 };
 
 module.exports.allDoctors = () => {
-    return db.query(`SELECT * FROM doctor_info order by created_at DESC`);
+    return db.query(
+        `SELECT doctor_info.*, doctor_address.* FROM doctor_info INNER JOIN doctor_address ON(doctor_info.id = doctor_address.Doctor_id)`
+    );
 };
 
 module.exports.getDoctorinfo = (id) => {
@@ -115,4 +139,42 @@ module.exports.getDoctorinfo = (id) => {
 
 module.exports.getDoctor = (id) => {
     return db.query(`SELECT * FROM  doctor_info WHERE id = $1;`, [id]);
+};
+
+module.exports.addCode = (email, code) => {
+    return db.query(
+        `INSERT INTO reset_codes (email, code) VALUES ($1, $2) RETURNING email;`,
+        [email, code]
+    );
+};
+module.exports.addCodeDoc = (email, code) => {
+    return db.query(
+        `INSERT INTO reset_codes_doc (email, code) VALUES ($1, $2) RETURNING email;`,
+        [email, code]
+    );
+};
+
+module.exports.checkCode = (email) => {
+    return db.query(
+        `SELECT * FROM reset_codes WHERE (CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes') AND (email = $1) ORDER BY id DESC LIMIT 1;`,
+        [email]
+    );
+};
+module.exports.checkCodeDoc = (email) => {
+    return db.query(
+        `SELECT * FROM reset_codes_doc WHERE (CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes') AND (email = $1) ORDER BY id DESC LIMIT 1;`,
+        [email]
+    );
+};
+module.exports.updatePassword = (email, password) => {
+    return db.query(`UPDATE users SET password = $2 WHERE email = $1;`, [
+        email,
+        password,
+    ]);
+};
+module.exports.updatePasswordDoc = (email, password) => {
+    return db.query(
+        `UPDATE doctor_info SET password = $2 WHERE email_id = $1;`,
+        [email, password]
+    );
 };

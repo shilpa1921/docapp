@@ -1,4 +1,29 @@
   DROP TABLE IF EXISTS doctor_info;
+
+    DROP TABLE IF EXISTS users;
+   
+   CREATE TABLE users(
+      id SERIAL PRIMARY KEY,
+      first_name VARCHAR(255) NOT NULL,
+      last_name VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL UNIQUE,
+      password VARCHAR(255) NOT NULL,
+      
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+ );
+
+   CREATE TABLE reset_codes(
+  id SERIAL PRIMARY KEY,
+  email VARCHAR NOT NULL,
+  code VARCHAR NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+ CREATE TABLE reset_codes_doc(
+  id SERIAL PRIMARY KEY,
+  email VARCHAR NOT NULL,
+  code VARCHAR NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
  
    CREATE TABLE doctor_info(
       id SERIAL PRIMARY KEY,

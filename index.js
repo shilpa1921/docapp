@@ -418,7 +418,7 @@ app.post("/friendship/:id", (req, res) => {
     }
 });
 
-app.post("/findpeople", (req, res) => {
+app.post("/findDoctor", (req, res) => {
     console.log("shilpa in find people", req.body.user);
     let id = req.session.userId;
     if (req.body.user) {

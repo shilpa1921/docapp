@@ -17,7 +17,7 @@ export default function FindPeople() {
     useEffect(() => {
         let abort;
         console.log("useEffect runs!");
-        axios.post("/findpeople", { user }).then(({ data }) => {
+        axios.post("/findDoctor", { user }).then(({ data }) => {
             console.log("data from flame egg: ", data);
 
             if (!abort) {
@@ -73,6 +73,10 @@ export default function FindPeople() {
                                 id={user.id}
                                 languages={user.languages}
                                 website_link={user.website_link}
+                                street={user.street}
+                                city={user.city}
+                                house_no={user.house_no}
+                                pincode={user.pincode}
                             />
                         </div>
                     </div>
