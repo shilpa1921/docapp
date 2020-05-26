@@ -4,17 +4,39 @@ const db = spicedPg(
         "postgres:postgres:postgres@localhost:5432/docapp"
 );
 
-module.exports.addData = (first_name, last_name, emailadd, password) => {
+module.exports.addDataToPat = (
+    first_name,
+    last_name,
+    dob,
+    personal_number,
+    emailadd,
+    pass,
+    pat_insurence
+) => {
     return db.query(
         `
-    INSERT INTO users (first_name, last_name, email, password)
-    VALUES($1, $2, $3, $4) RETURNING id`,
-        [first_name, last_name, emailadd, password]
+    INSERT INTO patient_info (  first_name,
+                    last_name,
+                    dob,
+                    personal_number,
+                    email,
+                    password,
+                    has_insurence)
+    VALUES($1, $2, $3, $4,$5,$6, $7) RETURNING id`,
+        [
+            first_name,
+            last_name,
+            dob,
+            personal_number,
+            emailadd,
+            pass,
+            pat_insurence,
+        ]
     );
 };
 module.exports.getpass = (email) => {
     return db
-        .query(`SELECT * FROM users WHERE email = $1;`, [email])
+        .query(`SELECT * FROM patient_info WHERE email = $1;`, [email])
         .then((results) => {
             console.log("result from getpass in db.js", results);
             return results;
@@ -48,6 +70,15 @@ module.exports.addDataToDoctorinfo = (
         [first_name, last_name, emailadd, password]
     );
 };
+
+module.exports.addDataToAppHistroy = (pat_id, doc_id, appDate, appTime) => {
+    return db.query(
+        `
+    INSERT INTO appointment_history (patient_id, doctor_id, app_date, app_timeslot)
+    VALUES($1, $2, $3, $4) RETURNING id`,
+        [pat_id, doc_id, appDate, appTime]
+    );
+};
 module.exports.addDocAddress = (
     userId,
     street,
@@ -64,6 +95,22 @@ module.exports.addDocAddress = (
     INSERT INTO doctor_address (Doctor_id, street, house_no, city, state, country, pincode, latitude, longitude)
     VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
         [userId, street, house_no, city, state, country, zip_code, lat, lng]
+    );
+};
+
+module.exports.addInfoToAvailbilityDoctor = (
+    userId,
+
+    sat_day,
+    sun_day,
+    from,
+    to
+) => {
+    return db.query(
+        `
+    INSERT INTO doctor_availability (Doctor_id, availability_saturday, availability_sunday, visiting_hours_from, visiting_hours_to)
+    VALUES($1, $2, $3, $4, $5) RETURNING id`,
+        [userId, sat_day, sun_day, from, to]
     );
 };
 
@@ -129,7 +176,7 @@ module.exports.getMatchingDoctors = (val, id) => {
 
 module.exports.allDoctors = () => {
     return db.query(
-        `SELECT doctor_info.*, doctor_address.* FROM doctor_info INNER JOIN doctor_address ON(doctor_info.id = doctor_address.Doctor_id)`
+        `SELECT doctor_info.*, doctor_address.*, specialization.specialization_name FROM doctor_info INNER JOIN doctor_address ON doctor_info.id = doctor_address.doctor_id INNER JOIN specialization ON doctor_info.specialization_id = specialization.id `
     );
 };
 
@@ -176,5 +223,30 @@ module.exports.updatePasswordDoc = (email, password) => {
     return db.query(
         `UPDATE doctor_info SET password = $2 WHERE email_id = $1;`,
         [email, password]
+    );
+};
+
+module.exports.getTimeSlot = (doctor_id, selectedDate) => {
+    return db.query(
+        `SELECT app_timeslot FROM appointment_history WHERE app_date = $2 AND doctor_id = $1`,
+        [doctor_id, selectedDate]
+    );
+};
+
+module.exports.getDoctorWorkingHours = (doctor_id) => {
+    return db.query(
+        ` SELECT visiting_hours_from, visiting_hours_to FROM doctor_availability where doctor_id = $1`,
+        [doctor_id]
+    );
+};
+
+module.exports.getEmailId = (pat_id) => {
+    return db.query(`SELECT email FROM patient_info WHERE id = $1;`, [pat_id]);
+};
+
+module.exports.getInfoDocForMail = (doc_id) => {
+    return db.query(
+        `SELECT first_name , last_name FROM doctor_info WHERE id = $1;`,
+        [doc_id]
     );
 };

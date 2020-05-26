@@ -45,6 +45,9 @@ export default function DisplayDocInfo({
                 <h4>
                     {street} {house_no} {city} {pincode}
                 </h4>
+                <Link to={`/user/${id}`}>
+                    <button>Continue to book an appointment</button>
+                </Link>
             </div>
         </div>
     );

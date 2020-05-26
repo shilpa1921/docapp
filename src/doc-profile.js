@@ -3,6 +3,7 @@ import React from "react";
 import AutoFillAddress from "./auto-add";
 
 import DoctorProfessionalInfo from "./doc-prof";
+import AvailbilityShow from "./doc-availability";
 
 export default function DoctorProfie({
     first,
@@ -27,19 +28,20 @@ export default function DoctorProfie({
                     id="pic-in-profile"
                     src={imageUrl}
                 ></img>
+
                 <h1>
                     Dr. {first} {last}
                 </h1>
                 <h1>{qulification}</h1>
+                <div>
+                    <AvailbilityShow />
+                </div>
             </div>
             <div>
                 <DoctorProfessionalInfo
                     visibilityFunction={(arg) => visibilityFunction(arg)}
                 />
             </div>
-            {/* <div>
-                <AutoFillAddress />
-            </div> */}
         </div>
     );
 }

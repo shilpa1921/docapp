@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "./axios";
 
-// import Presentational from "./presentational";
+import Presentational from "./presentational";
 import Uploader from "./uploader";
 
 // import Logo from "./logo";
@@ -76,12 +76,12 @@ export default class App extends React.Component {
         return (
             <div id="app-componenet">
                 <BrowserRouter>
-                    {/* <Presentational
+                    <Presentational
                         first={this.state.first}
                         last={this.state.last}
                         imageUrl={this.state.imageUrl}
                         toggleModal={() => this.toggleModal()}
-                    /> */}
+                    />
 
                     <Route
                         exact

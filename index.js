@@ -5,7 +5,7 @@ const compression = require("compression");
 const cookieSession = require("cookie-session");
 const { hash, compare } = require("./bc");
 const db = require("./db");
-// const ses = require("./ses");
+const ses = require("./ses");
 // const cryptoRandomString = require("crypto-random-string");
 
 const csurf = require("csurf");
@@ -87,6 +87,16 @@ app.post("/register", (req, res) => {
     console.log("req.body", req.body);
     var first_name = req.body.first;
     var last_name = req.body.last;
+    var dob = req.body.dob;
+    var personal_number = req.body.personal_number;
+    var patient_insurence = req.body.patient_insurence;
+    var pat_insurence;
+
+    if (patient_insurence == "yes") {
+        pat_insurence = true;
+    } else {
+        pat_insurence = false;
+    }
     var emailadd = req.body.email;
     var password = req.body.password;
     console.log("req.body.password", req.body.password);
@@ -102,7 +112,15 @@ app.post("/register", (req, res) => {
             .then((pass) => {
                 console.log("hashed password", pass);
 
-                db.addData(first_name, last_name, emailadd, pass)
+                db.addDataToPat(
+                    first_name,
+                    last_name,
+                    dob,
+                    personal_number,
+                    emailadd,
+                    pass,
+                    pat_insurence
+                )
                     .then((results) => {
                         req.session.userId = results.rows[0].id;
                         console.log("userid", req.session.userId);
@@ -628,6 +646,96 @@ app.post("/auto-address", (req, res) => {
             res.json({ success: false });
         });
 });
+
+app.post("/doc-availability", (req, res) => {
+    console.log("req.body in /doc-availability", req.body);
+    var userId = req.session.userId;
+    var to = req.body.to;
+    var from = req.body.from;
+    var day = req.body.day;
+
+    if (day == "saturday") {
+        var sat_day = true;
+        var sun_day = false;
+    } else if (day == "sunday") {
+        var sat_day = false;
+        var sun_day = true;
+    } else {
+        var sat_day = true;
+        var sun_day = true;
+    }
+
+    db.addInfoToAvailbilityDoctor(userId, sat_day, sun_day, from, to)
+        .then((result) => {
+            console.log(
+                "result in add info to availability doctor table",
+                result
+            );
+            res.json({ success: true });
+        })
+        .catch((err) => {
+            console.log("error in add info to availability", err);
+            res.json({ success: false });
+        });
+});
+
+app.post("/appointment-histroy", (req, res) => {
+    console.log("req.body in  appointment-histroy", req.body);
+    var appDate = req.body.appDate;
+    var appTime = req.body.appTime;
+    var doc_id = req.body.doc_id;
+    var pat_id = req.session.userId;
+
+    db.addDataToAppHistroy(pat_id, doc_id, appDate, appTime).then((result) => {
+        console.log("result in addDataToAppHistroy", result);
+        res.json({ success: true });
+    });
+    var first;
+    var last;
+
+    db.getInfoDocForMail(doc_id).then((result) => {
+        console.log("result in getInfoDocForMAil", result);
+        first = result.rows[0].first_name;
+        last = result.rows[0].last_name;
+    });
+
+    db.getEmailId(pat_id).then((result) => {
+        console.log("result in get Email id", result);
+        let to = result.rows[0].email;
+        let subject = "Appointment Confirmation";
+        let text =
+            "You have an appointment on" +
+            appDate +
+            " " +
+            appTime +
+            "with Dr" +
+            first +
+            "     " +
+            last;
+        console.log("info of send email", to, subject, text);
+        ses.sendEmail(to, subject, text);
+    });
+});
+
+app.post("/get-timesloat", (req, res) => {
+    console.log("req.body in get timeslot", req.body);
+    var selectedDate = req.body.selectedDate;
+    var doctor_id = req.body.doctor_id;
+    db.getTimeSlot(doctor_id, selectedDate).then((result) => {
+        console.log("result in  get time sloat", result.rows);
+        res.json(result.rows);
+    });
+});
+
+app.post("/get-workinghours", (req, res) => {
+    console.log("req.body in get workinghours", req.body);
+    var doctor_id = req.body.doctor_id;
+    db.getDoctorWorkingHours(doctor_id).then((result) => {
+        console.log("result working hours = ", result);
+        res.json(result.rows);
+    });
+});
+
 app.listen(8080, function () {
     console.log("I'm listening.");
 });

@@ -28,7 +28,7 @@ export default class Registration extends React.Component {
         axios.post("/register", this.state).then(({ data }) => {
             console.log("data: ", data);
             if (data.success) {
-                location.replace("/users");
+                location.replace("/doc-list");
             } else if (data.duplicate) {
                 this.setState({
                     error1: true,
@@ -67,6 +67,33 @@ export default class Registration extends React.Component {
                     onChange={(e) => this.handleChange(e)}
                 />
                 <br></br>
+                <input
+                    className="input-field-div"
+                    name="dob"
+                    autoComplete="off"
+                    placeholder="DOB"
+                    required
+                    onChange={(e) => this.handleChange(e)}
+                />
+                <br></br>
+                <input
+                    className="input-field-div"
+                    name="personal_number"
+                    autoComplete="off"
+                    placeholder="Personal number"
+                    required
+                    onChange={(e) => this.handleChange(e)}
+                />
+                <br></br>
+                <select
+                    className="input-field-div"
+                    name="patient_insurence"
+                    onChange={(e) => this.handleChange(e)}
+                >
+                    <option>Do you have insurence card</option>
+                    <option value="yes">yes</option>
+                    <option value="no">No</option>
+                </select>
                 <input
                     className="input-field-div"
                     name="email"

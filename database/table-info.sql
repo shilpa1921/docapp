@@ -1,16 +1,36 @@
-  DROP TABLE IF EXISTS doctor_info;
+  DROP TABLE IF EXISTS doctor_info CASCADE;
+  DROP TABLE IF EXISTS specialization CASCADE;
+  DROP TABLE IF EXISTS patient_info CASCADE;
+  DROP TABLE IF EXISTS doctor_availability CASCADE;
+  DROP TABLE IF EXISTS doctor_address CASCADE;
+  DROP TABLE IF EXISTS reset_codes CASCADE;
+  DROP TABLE IF EXISTS reset_codes_doc CASCADE;
 
-    DROP TABLE IF EXISTS users;
+
    
-   CREATE TABLE users(
+   CREATE TABLE patient_info(
       id SERIAL PRIMARY KEY,
       first_name VARCHAR(255) NOT NULL,
       last_name VARCHAR(255) NOT NULL,
+      dob VARCHAR(255),
+      personal_number VARCHAR(255) ,
       email VARCHAR(255) NOT NULL UNIQUE,
       password VARCHAR(255) NOT NULL,
-      
+      has_insurence BOOLEAN,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
  );
+ 
+CREATE TABLE doctor_availability(
+    id SERIAL PRIMARY KEY,
+    Doctor_id INT NOT NULL  UNIQUE  REFERENCES doctor_info(id),
+    availability_saturday BOOLEAN DEFAULT FALSE,
+    availability_sunday BOOLEAN DEFAULT FALSE,
+    visiting_hours_from VARCHAR NOT NULL,
+    visiting_hours_to VARCHAR NOT NULL,
+    vaction VARCHAR
+
+);
+
 
    CREATE TABLE reset_codes(
   id SERIAL PRIMARY KEY,
@@ -31,7 +51,7 @@
       last_name VARCHAR(255) NOT NULL,
       dob VARCHAR(255),
       qualification VARCHAR(255),
-      specialization_id VARCHAR(255),
+      specialization_id INT,
       office_number VARCHAR(255),
       personal_number VARCHAR(255) ,
       website_link VARCHAR(255) ,
@@ -44,7 +64,7 @@
  );
   CREATE TABLE doctor_address(
       id SERIAL PRIMARY KEY,
-      Doctor_id INT NOT NULL  UNIQUE  REFERENCES doctor_info(id),
+      doctor_id INT NOT NULL  UNIQUE  REFERENCES doctor_info(id),
       street VARCHAR(255) NOT NULL,
       house_no VARCHAR(255),
       city VARCHAR(255),
@@ -55,13 +75,30 @@
       longitude FLOAT,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
  );
+ INSERT INTO  doctor_address (doctor_id, street, house_no, city, state,country,pincode, latitude, longitude )
+    VALUES (1, 'Hirtestrase', '106', 'Berlin', 'Berlin', 'Germany', '12555', 52.456786554, 13.2345677);
 
-  DROP TABLE IF EXISTS specialization;
+INSERT INTO  doctor_address (doctor_id, street, house_no, city, state,country,pincode, latitude, longitude )
+    VALUES (2, 'J P nagar', '16', 'Banglore', 'banglore', 'India', '12344', 51.456786554, 11.2345677);
+
 
     CREATE TABLE specialization(
         id SERIAL PRIMARY KEY,
         specialization_name VARCHAR(255) NOT NULL
       );
+
+  CREATE TABLE appointment_history(
+      id SERIAL PRIMARY KEY,
+      patient_id INT   REFERENCES patient_info(id),
+      doctor_id INT    REFERENCES doctor_info(id),
+      app_date  VARCHAR(255),
+      app_timeslot VARCHAR(255),
+      illness VARCHAR(255) ,
+      doctor_comments VARCHAR(255)
+  );
+
+
+
 
 INSERT INTO  specialization (specialization_name) VALUES ('Acupuncturist');
 INSERT INTO  specialization (specialization_name) VALUES ('Allergist');

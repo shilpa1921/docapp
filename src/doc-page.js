@@ -3,6 +3,8 @@ import axios from "./axios";
 // import Profile from "./profile";
 // import Logout from "./logout";
 
+import CalenderShow from "./picker-calender";
+
 class DoctorPage extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +25,7 @@ class DoctorPage extends Component {
                 last: res.data.last_name,
                 imageUrl: res.data.pic_url || "/default.png",
                 city: res.data.city,
+                id: res.data.id,
             });
         });
     }
@@ -30,14 +33,19 @@ class DoctorPage extends Component {
         return (
             <Fragment>
                 <div className="profile">
-                    <h1>
-                        {this.state.first} {this.state.last}
-                    </h1>
-                    <img
-                        id="pic-in-otherprofile"
-                        src={this.state.imageUrl}
-                    ></img>
-                    <h2>{this.state.city}</h2>
+                    <div>
+                        <h2>
+                            {this.state.first} {this.state.last}
+                        </h2>
+                        <img
+                            id="pic-in-otherprofile"
+                            src={this.state.imageUrl}
+                        ></img>
+                        <h2>{this.state.city}</h2>
+                    </div>
+                    <div id="calender">
+                        <CalenderShow id={this.state.id} />
+                    </div>
                 </div>
             </Fragment>
         );
