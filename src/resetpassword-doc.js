@@ -68,7 +68,7 @@ export default class ResetPasswordDoctor extends React.Component {
                             className="input-field-div"
                             id="email"
                             name="email"
-                            placeholder="email address"
+                            placeholder="Email address"
                             onChange={(e) => this.handleChange(e)}
                         ></input>
                         <button onClick={() => this.submitEmail()}>
@@ -89,7 +89,7 @@ export default class ResetPasswordDoctor extends React.Component {
                             onChange={(e) => this.handleChange(e)}
                         ></input>
                         <br></br>
-                        <label for="pass">set new password</label>
+                        <label for="pass">Set new password</label>
                         <input
                             className="input-field-div"
                             id="pass"

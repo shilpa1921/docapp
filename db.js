@@ -167,16 +167,31 @@ module.exports.saveProfilePic = (user_id, url) => {
     );
 };
 
-module.exports.getMatchingDoctors = (val, id) => {
+module.exports.getMatchingDoctors = (val) => {
     return db.query(
-        `SELECT * FROM doctor_info WHERE id != $2 AND first_name ILIKE $1;`,
-        [val + "%", id]
+        `SELECT * FROM doctor_info WHERE first_name ILIKE $1 OR last_name ILIKE $1;`,
+        [val + "%"]
     );
 };
 
-module.exports.allDoctors = () => {
+// module.exports.allDoctors = () => {
+//     return db.query(
+//         `SELECT doctor_info.*, doctor_address.*, specialization.specialization_name FROM doctor_info INNER JOIN doctor_address ON doctor_info.id = doctor_address.doctor_id INNER JOIN specialization ON doctor_info.specialization_id = specialization.id ORDER BY doctor_info.id DESC LIMIT 3 `
+//     );
+// };
+
+module.exports.allDoctors = (lat, lng) => {
     return db.query(
-        `SELECT doctor_info.*, doctor_address.*, specialization.specialization_name FROM doctor_info INNER JOIN doctor_address ON doctor_info.id = doctor_address.doctor_id INNER JOIN specialization ON doctor_info.specialization_id = specialization.id `
+        `
+        SELECT doctor_info.*, doctor_address.*, specialization.specialization_name, ROUND(CAST(SQRT(
+    POW(69.1 * (latitude - $1), 2) +
+    POW(69.1 * ($2 - longitude) * COS(latitude / 57.3), 2)) as numeric), 2) AS distance 
+FROM 
+doctor_info INNER JOIN doctor_address ON doctor_info.id = doctor_address.doctor_id 
+INNER JOIN specialization ON doctor_info.specialization_id = specialization.id
+ORDER BY distance LIMIT 3
+        `,
+        [lat, lng]
     );
 };
 
@@ -185,7 +200,10 @@ module.exports.getDoctorinfo = (id) => {
 };
 
 module.exports.getDoctor = (id) => {
-    return db.query(`SELECT * FROM  doctor_info WHERE id = $1;`, [id]);
+    return db.query(
+        `SELECT doctor_info.*, doctor_address.*, specialization.specialization_name FROM doctor_info INNER JOIN doctor_address ON doctor_info.id = doctor_address.doctor_id INNER JOIN specialization ON doctor_info.specialization_id = specialization.id WHERE doctor_info.id = $1;`,
+        [id]
+    );
 };
 
 module.exports.addCode = (email, code) => {
@@ -230,6 +248,15 @@ module.exports.getTimeSlot = (doctor_id, selectedDate) => {
     return db.query(
         `SELECT app_timeslot FROM appointment_history WHERE app_date = $2 AND doctor_id = $1`,
         [doctor_id, selectedDate]
+    );
+};
+
+module.exports.getMorePost = (id) => {
+    return db.query(
+        `SELECT doctor_info.*, doctor_address.*, specialization.specialization_name, (
+            SELECT id FROM doctor_info ORDER BY id ASC LIMIT 1
+        ) AS lowest_id FROM doctor_info INNER JOIN doctor_address ON doctor_info.id = doctor_address.doctor_id INNER JOIN specialization ON doctor_info.specialization_id = specialization.id WHERE doctor_info.id < $1 ORDER BY doctor_info.id DESC LIMIT 3;`,
+        [id]
     );
 };
 

@@ -89,7 +89,7 @@ export default class RegistrationDoctor extends React.Component {
                 <input
                     className="input-field-div"
                     name="confirmPassword"
-                    placeholder="Confirm Password"
+                    placeholder="Confirm password"
                     autoComplete="off"
                     type="password"
                     required
@@ -99,7 +99,7 @@ export default class RegistrationDoctor extends React.Component {
                 <button onClick={() => this.submit()}>Register!</button>
                 <HashRouter>
                     <div id="desc-link">
-                        If you already have an account?{" "}
+                        Already a member?{" "}
                         <Link to="/log-doc">Log in here!</Link>
                     </div>
                 </HashRouter>

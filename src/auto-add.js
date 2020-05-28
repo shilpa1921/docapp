@@ -104,7 +104,7 @@ class AutoFillAddress extends React.Component {
                         className="input-field-div"
                         name={"street"}
                         value={this.state.street}
-                        placeholder={"Street Address"}
+                        placeholder={"Street"}
                         onChange={this.handleChange}
                     />
                     <br></br>

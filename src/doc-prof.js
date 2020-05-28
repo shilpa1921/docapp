@@ -56,11 +56,11 @@ export default class DoctorProfessionalInfo extends React.Component {
     render() {
         return (
             <div className="reg-doc1">
-                <h2 id="heading">Please Fill the all fields</h2>
+                <h2 id="heading">Please fill the all fields</h2>
                 {this.state.error && <div>Oops something went wrong!</div>}
 
                 <input
-                    className="input-field-div"
+                    className="input-field-div "
                     name="qualification"
                     autoComplete="off"
                     placeholder="Qualification"
@@ -69,7 +69,7 @@ export default class DoctorProfessionalInfo extends React.Component {
                 />
                 <br></br>
                 <select
-                    className="input-field-div"
+                    className="input-field-div border"
                     name="insurence"
                     onChange={(e) => this.handleChange(e)}
                 >
@@ -78,7 +78,7 @@ export default class DoctorProfessionalInfo extends React.Component {
                     <option value="no">No</option>
                 </select>
                 <select
-                    className="input-field-div"
+                    className="input-field-div border"
                     name="category_id"
                     onChange={(e) => this.handleChange(e)}
                     id="myList"
@@ -94,7 +94,7 @@ export default class DoctorProfessionalInfo extends React.Component {
                     className="input-field-div"
                     name="dob"
                     autoComplete="off"
-                    placeholder="DOB "
+                    placeholder="DOB (YYYY-MM-DD)"
                     required
                     onChange={(e) => this.handleChange(e)}
                 />
@@ -104,7 +104,7 @@ export default class DoctorProfessionalInfo extends React.Component {
                     className="input-field-div"
                     name="Office_number"
                     autoComplete="Off"
-                    placeholder="Office Number "
+                    placeholder="Office number "
                     required
                     onChange={(e) => this.handleChange(e)}
                 />
@@ -123,7 +123,7 @@ export default class DoctorProfessionalInfo extends React.Component {
                     className="input-field-div"
                     name="spoken_lang"
                     autoComplete="off"
-                    placeholder="Spoken Languages"
+                    placeholder="Spoken languages"
                     required
                     onChange={(e) => this.handleChange(e)}
                 />

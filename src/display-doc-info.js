@@ -15,8 +15,12 @@ export default function DisplayDocInfo({
     street,
     house_no,
     pincode,
+    specialization_name,
+    qualification,
+    dist,
+    distance,
 }) {
-    console.log("props in profilepic: ", id);
+    console.log("props in profilepic: ", id, dist);
 
     imageUrl = imageUrl || "/default.png";
     let name = first + " " + last;
@@ -32,19 +36,38 @@ export default function DisplayDocInfo({
                 />
             </Link>
             <div id="list">
-                <h3>
+                <p>
                     {" "}
-                    Dr.{first} {last}
-                </h3>
-                <h3>Spoken languages:{languages}</h3>
+                    Dr.{first} {last}, {qualification}
+                </p>
+                <p>
+                    <strong>Spec:</strong>
+                    {specialization_name}
+                </p>
+                <p>
+                    <strong>Qual:</strong>
+                    {qualification}
+                </p>
+                <p>
+                    <strong>Add:</strong>
+                    {street} {house_no}
+                    <br></br>
+                    {"  "}
+                    {city} {pincode}
+                </p>
+                {dist && (
+                    <p>
+                        <strong>Dist:</strong>
+                        {distance}mi
+                    </p>
+                )}
             </div>
-            <div>
-                <h4>
-                    Website:<a href={website_link}>{website_link}</a>
-                </h4>
-                <h4>
-                    {street} {house_no} {city} {pincode}
-                </h4>
+            <div id="address-confirmbtn">
+                {/* <p>
+                    <strong> Address:</strong> {street} {house_no}, {city} ,
+                    {pincode}
+                </p> */}
+
                 <Link to={`/user/${id}`}>
                     <button>Continue to book an appointment</button>
                 </Link>

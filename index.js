@@ -348,19 +348,6 @@ app.post("/resetpassword/verify", (req, res) => {
             console.log("Error in db.checkCode: ", err);
         });
 });
-app.post("/saveUserBio", async (req, res) => {
-    let user_id = req.session.userId;
-    let bio = req.body.draftBio;
-    console.log("bio in index", req.body);
-    try {
-        const results = await db.saveUserBio(user_id, bio);
-        console.log("saveUserBio results", results);
-
-        res.json(results.rows[0]);
-    } catch (err) {
-        console.log("error in saveUserBio", err);
-    }
-}); //end of saveUserBio
 
 app.post("/user/:id", (req, res) => {
     console.log("id in other profile", req.params.id);
@@ -377,75 +364,18 @@ app.post("/user/:id", (req, res) => {
         });
 });
 
-app.post(`/friendshipstatus/:id`, (req, res) => {
-    console.log("id in  friendshipstatus", req.params.id);
-    db.friendshipmatch(req.session.userId, req.params.id).then((result) => {
-        console.log("result in friendshipstatus", result);
-        if (result.rowCount == 0) {
-            res.json({ text: " Make friend request" });
-        } else if (
-            result.rows[0].accepted === false &&
-            result.rows[0].sender_id == req.params.id
-        ) {
-            res.json({ text: "Accept Friend Request" });
-        } else if (
-            result.rows[0].accepted === false &&
-            result.rows[0].receiver_id == req.params.id
-        ) {
-            res.json({ text: "Cancel Friend Request" });
-        } else {
-            res.json({ text: "End Friendship" });
-        }
-    });
-});
-
-app.post("/friendship/:id", (req, res) => {
-    const { id } = req.params;
-    const { text } = req.body;
-    console.log("This is the text: ", text);
-    if (text == " Make friend request") {
-        return db
-            .addFriendsRow(id, req.session.userId)
-            .then(({ rows }) => {
-                console.log("db.addFriendsRow was succesful: ", rows);
-                res.json({ text: "Cancel Friend Request" });
-            })
-            .catch((err) => {
-                console.log("Error in db.addFriendsRow: ", err);
-            });
-    } else if (text == "Cancel Friend Request" || text == "End Friendship") {
-        return db
-            .cancelFriend(id, req.session.userId)
-            .then(() => {
-                console.log("cancel friend is success");
-                res.json({ text: " Make friend request" });
-            })
-            .catch((err) => {
-                console.log("Error in cancelFriend: ", err);
-            });
-    } else if (text == "Accept Friend Request") {
-        return db
-            .acceptFriend(id, req.session.userId)
-            .then(() => {
-                console.log("updation is  successful!");
-                res.json({ text: "End Friendship" });
-            })
-            .catch((err) => {
-                console.log("Error in acceptFriend: ", err);
-            });
-    }
-});
-
 app.post("/findDoctor", (req, res) => {
     console.log("shilpa in find people", req.body.user);
     let id = req.session.userId;
+    var lat = 0.0;
+    var lng = 0.0;
     if (req.body.user) {
-        db.getMatchingDoctors(req.body.user, id).then((results) => {
+        db.getMatchingDoctors(req.body.user).then((results) => {
             console.log("results in findpeople search", results.rows);
             res.json(results.rows);
         });
     } else {
-        db.allDoctors().then((result) => {
+        db.allDoctors(lat, lng).then((result) => {
             console.log("results in findpeople", result.rows);
             res.json(result.rows);
         });
@@ -455,37 +385,24 @@ app.post("/findDoctor", (req, res) => {
 app.post("/category", (req, res) => {
     console.log("req.body in category", req.body);
 
-    var category = req.body.cat;
-    if (category == "all") {
-        db.recentjoiners().then((result) => {
-            console.log("results in findpeople", result.rows);
-            res.json(result.rows);
-        });
-    } else {
-        db.searchByCategory(category).then((result) => {
-            console.log("result in category", result);
-            res.json(result.rows);
-        });
-    }
+    // var category = req.body.cat;
+    // if (category == "all") {
+    //     db.recentjoiners().then((result) => {
+    //         console.log("results in findpeople", result.rows);
+    //         res.json(result.rows);
+    //     });
+    // } else {
+    //     db.searchByCategory(category).then((result) => {
+    //         console.log("result in category", result);
+    //         res.json(result.rows);
+    //     });
+    // }
 });
 app.post("/category-1", (req, res) => {
     db.recentjoiners().then((result) => {
         console.log("results in findpeople", result.rows);
         res.json(result.rows);
     });
-});
-
-app.post("/morePost", (req, res) => {
-    console.log("id in more post", req.body);
-
-    return db
-        .getMorePost(req.body.id)
-        .then((result) => {
-            res.json(result.rows);
-        })
-        .catch((err) => {
-            console.log("There is an error in More post ", err);
-        });
 });
 
 app.post("/resetpassword-doc/step1", (req, res) => {
@@ -553,23 +470,11 @@ app.post("/resetpassword-doc/verify", (req, res) => {
 
 app.post("/userLoction", (req, res) => {
     console.log("req.body in /userLocation", req.body);
-    street_address = req.body.street_address;
-    city = req.body.city;
-    state = req.body.state;
-    country = req.body.country;
-    zip_code = req.body.zip_code;
+
     lat = req.body.lat;
     lng = req.body.lng;
-    db.addUserAddress(
-        street_address,
-        city,
-        state,
-        country,
-        zip_code,
-        lat,
-        lng
-    ).then((result) => {
-        console.log("user address", result);
+    db.allDoctors(lat, lng).then((result) => {
+        console.log("results in /userlocation", result.rows);
         res.json(result.rows);
     });
 });
@@ -734,6 +639,20 @@ app.post("/get-workinghours", (req, res) => {
         console.log("result working hours = ", result);
         res.json(result.rows);
     });
+});
+
+app.post("/morePost", (req, res) => {
+    console.log("id in more post", req.body);
+
+    return db
+        .getMorePost(req.body.id)
+        .then((result) => {
+            console.log("result in /morePost", result.rows);
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            console.log("There is an error in More post ", err);
+        });
 });
 
 app.listen(8080, function () {

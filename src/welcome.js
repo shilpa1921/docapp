@@ -7,7 +7,7 @@ import Mainpage from "./main-page";
 import ResetPassword from "./resetpassword";
 import RegistrationDoctor from "./reg-doctor";
 import LoginDoctor from "./log-doctor";
-// import Logo from "./logo";
+import Logo from "./logo";
 
 // import ParlorForm from "./autoadd";
 
@@ -16,8 +16,7 @@ import ResetPasswordDoctor from "./resetpassword-doc";
 export default function Welcome() {
     return (
         <div id="welcome">
-            {/* <Logo /> */}
-            <h1> Welcome to my website</h1>
+            <Logo />
 
             <HashRouter>
                 <div>

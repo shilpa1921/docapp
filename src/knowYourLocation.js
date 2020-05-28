@@ -64,18 +64,13 @@ class SearchLocation extends React.Component {
         let address = addressObject.address_components;
         let location = addressObject.geometry;
         this.setState({
-            name: addressObject.name,
-            street_address: `${address[1].long_name} ${address[0].long_name}`,
-            city: address[3].long_name,
-            state: address[4].long_name,
-            country: address[5].long_name,
-            zip_code: address[6].short_name,
             lat: location.viewport.Ya.i,
             lng: location.viewport.Ua.i,
         });
         console.log("this.state", this.state);
         axios.post("/userLoction", this.state).then((res) => {
             console.log("response in /userLocation", res);
+            this.props.searchResult(res.data);
         });
     }
 
@@ -84,10 +79,12 @@ class SearchLocation extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <input
-                        id="autocomplete"
+                        className="search-btn"
+                        id="autocomplete-search"
                         className="input-field"
                         ref="input"
                         type="text"
+                        placeholder="Nearby doctors"
                     />
                 </form>
             </div>

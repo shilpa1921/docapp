@@ -44,8 +44,10 @@ function AvailbilityShow() {
         <div className="reg-doc2">
             {error && <p>Succesfully updated</p>}
             {error1 && <p>You have already updated</p>}
-            <p>Enter your daily availability </p>
-            From:
+            <p>
+                <strong>Enter your daily availability</strong>{" "}
+            </p>
+            From:{" "}
             <DatePicker
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
@@ -56,8 +58,7 @@ function AvailbilityShow() {
                 dateFormat="HH:mm"
                 timeFormat="HH:mm"
             />
-            <p></p>
-            To :
+            <p></p> To:{"  "}
             <DatePicker
                 selected={endDate}
                 onChange={(date) => setEndDate(date)}
@@ -69,8 +70,9 @@ function AvailbilityShow() {
                 timeFormat="HH:mm"
             />
             <br></br>
-            <p></p>
-            If you are also working on weekend
+            <p>
+                <strong>If you are also working on weekend</strong>
+            </p>
             <select
                 className="input-field-div"
                 name="availabilityDay"

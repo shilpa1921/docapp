@@ -156,3 +156,10 @@ export default CalenderShow;
  db.getEmailId(pat_id).then((result) => {
                 console.log("result in get Email id", result);
             });
+
+              <p>
+                        <strong>Dist:</strong>
+                        {street} {house_no}
+                        <br></br>
+                        {city} {pincode}
+                    </p>

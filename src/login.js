@@ -39,7 +39,7 @@ export default class Login extends React.Component {
     render() {
         return (
             <div className="login">
-                <h3 id="head">Please Login here</h3>
+                <h3 id="head">Please login here</h3>
                 {this.state.error && <div>Oops something went wrong!</div>}
 
                 <br></br>
@@ -47,7 +47,7 @@ export default class Login extends React.Component {
                     className="input-field-div"
                     name="email"
                     autoComplete="off"
-                    placeholder="email"
+                    placeholder="Email"
                     required
                     onChange={(e) => this.handleChange(e)}
                 />
@@ -55,7 +55,7 @@ export default class Login extends React.Component {
                 <input
                     className="input-field-div"
                     name="password"
-                    placeholder="password"
+                    placeholder="Password"
                     autoComplete="off"
                     type="password"
                     required
@@ -65,12 +65,12 @@ export default class Login extends React.Component {
                 <button onClick={() => this.submit()}>Log in!</button>
                 <HashRouter>
                     <div id="register">
-                        If you do not have an account yet,{" "}
-                        <Link to="/registartion">register here!</Link>
+                        If you are not member?{" "}
+                        <Link to="/registartion">Register here!</Link>
                     </div>
                     <div id="reset">
-                        If you forget your password,clock here to reset{" "}
-                        <Link to="/resetpassword">forgot password!</Link>
+                        Forget your password?{" "}
+                        <Link to="/resetpassword">Click here!</Link>
                     </div>
                 </HashRouter>
             </div>

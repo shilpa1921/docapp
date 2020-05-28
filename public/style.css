@@ -1,26 +1,56 @@
 body {
-    background-color: rgb(241, 227, 192, 0.6);
+    /* background-color: rgb(241, 227, 192, 0.2); */
+    background-color: #04a5a5;
+    color: #045050;
+    font-family: "Courier New", Courier, monospace;
+    font: inherit;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 * {
     box-sizing: border-box;
+}
+p {
+    font-size: 18px;
+    margin: 5px;
+}
+#app-componenet {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: 1fr 30px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+#footer {
+    /* background-color: white; */
+    margin-top: 20px;
+    text-align: center;
+}
+#footer p {
+    margin: 0;
 }
 
 main {
     min-height: 100vh;
     padding: 20px;
-    margin-top: 30px;
-    margin-left: 60px;
-    margin-right: 60px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    margin-top: 0px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 #welcome h1 {
     text-align: center;
-    color: darkred;
+    /* color: darkred; */
+    color: white;
 }
 #main-page {
     display: grid;
+    height: 200px;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
+    grid-gap: 30px;
 }
 
 #main-page-link {
@@ -29,20 +59,39 @@ main {
 }
 #doc-box {
     border: darkkhaki solid 2px;
-    background-color: rgb(133, 189, 31, 0.5);
+    /* background-color: rgb(133, 189, 31, 0.5); */
+    background-color: white;
     border-radius: 15px;
+    padding: 20px;
+}
+
+#doc-box h1 {
+    color: #045050;
+    font-size: 20px;
+}
+#pat-box h1 {
+    color: #045050;
+    font-size: 20px;
+}
+
+.h1-colour-size {
+    color: #045050;
 }
 #pat-box {
-    border: darkkhaki solid 2px;
+    /* border: darkkhaki solid 2px; */
     border-radius: 15px;
-    background-color: rgb(133, 189, 31, 0.5);
+    /* background-color: rgb(133, 189, 31, 0.5); */
+    background-color: white;
+    color: #045050;
+    padding: 20px;
 }
 
 .reg-doc {
     text-align: center;
-    background-color: rgb(133, 189, 31, 0.5);
+    /* background-color: rgb(133, 189, 31, 0.5); */
+    background-color: white;
     border-radius: 15px;
-    border: darkkhaki solid 2px;
+    /* border: darkkhaki solid 2px; */
     max-width: 40%;
     margin-left: 30%;
 
@@ -51,7 +100,8 @@ main {
 
 .reg-doc1 {
     text-align: center;
-    background-color: rgb(133, 189, 31, 0.5);
+    background-color: white;
+    /* background-color: rgb(133, 189, 31, 0.5); */
     border-radius: 15px;
     border: darkkhaki solid 2px;
 
@@ -60,15 +110,17 @@ main {
 
 .reg-doc2 {
     text-align: center;
-    background-color: rgb(133, 189, 31, 0.5);
+    /* background-color: rgb(133, 189, 31, 0.5); */
+    background-color: white;
     border-radius: 15px;
     border: rgb(148, 148, 148) solid 2px;
     margin-right: 60px;
+    padding-bottom: 10px;
 }
 
 .input-field-div {
     margin: 15px 40px;
-    border: none;
+    /* border: none; */
     position: relative;
     padding-left: 20px;
     width: 250px;
@@ -80,8 +132,9 @@ input:focus {
 }
 .login {
     text-align: center;
-    background-color: rgb(133, 189, 31, 0.5);
+    /* background-color: rgb(133, 189, 31, 0.5); */
     border: darkkhaki solid 2px;
+    background-color: white;
     border-radius: 15px;
     max-width: 50%;
     margin-left: 25%;
@@ -98,7 +151,7 @@ input:focus {
 }
 
 button {
-    background-color: #000;
+    background-color: #04a5a5;
     border: 1px solid #000;
     color: white;
     padding: 5px 10px;
@@ -114,7 +167,8 @@ button {
 
 #password-reset {
     text-align: center;
-    background-color: rgb(133, 189, 31, 0.5);
+    /* background-color: rgb(133, 189, 31, 0.5); */
+    background-color: white;
     border: darkkhaki solid 2px;
     border-radius: 15px;
     max-width: 50%;
@@ -147,10 +201,9 @@ button {
 }
 
 #close {
-    padding-left: 96%;
-    padding-top: 0;
-    margin-top: 0;
     font-size: 30px;
+    top: -20px;
+    right: -160px;
     font-weight: 600;
     position: relative;
 }
@@ -171,7 +224,7 @@ button {
 #upload-modal-div {
     border: 2px grey solid;
     border-radius: 20px;
-    background-color: rgb(135, 168, 231);
+    background-color: #dce4e4;
 
     padding: 30px;
     text-align: center;
@@ -180,19 +233,31 @@ button {
 
 #pic-in-profile {
     height: 200px;
-    width: 200px;
+    width: 340px;
 }
 #loc {
-    height: 30px;
-    width: 30px;
+    height: 28px;
+    width: 28px;
+    position: relative;
+    top: 3px;
+    left: 3px;
 }
 
 #p-loc {
     margin: 0;
+    /* background-color: white; */
+    /* border-radius: 15px; */
+    /* border: 2px solid black; */
 }
 #input-icon {
     display: grid;
-    grid-template-columns: 200px 300px 50px;
+    grid-template-columns: 1fr 1fr 300px;
+    margin-bottom: 20px;
+}
+
+#user-location {
+    display: grid;
+    grid-template-columns: 250px 40px;
 }
 
 #picandtext {
@@ -201,8 +266,9 @@ button {
     grid-gap: 10px;
     margin-bottom: 30px;
     transition: transform 0.2s;
-    border: springgreen solid 2px;
+    /* border: springgreen solid 2px; */
     border-radius: 15px;
+    background-color: white;
 }
 #picandtext:hover {
     transform: scale(1.1);
@@ -211,17 +277,21 @@ button {
 }
 
 .profilepic1 {
-    height: 150px;
-    width: 150px;
+    height: 125px;
+    width: 125px;
     margin: 20px;
+    border: 1px solid lightblue;
+    border-radius: 50%;
 }
 #pic-in-otherprofile {
-    height: 250px;
-    width: 300px;
+    height: 70px;
+    width: 70px;
+    /* border: 1px solid #5fc2ff; */
+    margin-top: 20px;
 }
 #nav {
     display: grid;
-    grid-template-columns: 1fr 150px 100px 120px;
+    grid-template-columns: 1fr 100px;
     grid-gap: 10px;
     font-size: 20px;
     box-sizing: border-box;
@@ -238,12 +308,12 @@ button {
 #present {
     box-sizing: border-box;
 
-    background-color: rgb(133, 189, 31, 0.7);
+    /* background-color: rgb(133, 189, 31, 0.6); */
 }
 #logo img {
-    height: 60px;
-    border: salmon solid 2px;
-    width: 100px;
+    height: 90px;
+    /* border: salmon solid 2px; */
+    width: 140px;
 }
 #pic-in-otherprofile {
     height: 250px;
@@ -253,17 +323,69 @@ button {
 .profile {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 30px;
-    margin-left: 70px;
+    /* margin-top: 30px; */
+    /* margin-left: 70px; */
+    /* border: lightgreen solid 2px; */
+    /* padding: 60px; */
+    background-color: white;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 30px;
+}
+
+#address-confirmbtn {
+    padding-right: 20px;
+    padding-top: 50px;
+}
+#logout a {
+    color: white;
+    font-weight: 900;
 }
 
 #calender {
     text-align: center;
     padding-right: 50%;
-    padding-top: 10%;
+    padding-top: 20%;
+    margin-bottom: 30px;
 }
-#confirmbtn {
-    margin-top: 2000px;
+#btn {
+    position: relative;
+    top: 50px;
+}
+.rm-margin {
+    margin: 10px;
+}
+#confirmMsg {
+    margin: 0;
+    color: green;
+}
+#seemore {
+    text-align: center;
+}
+
+#seemore button {
+    background-color: white;
+    color: #045050;
+}
+
+.search-btn {
+    height: 40px;
+    border-radius: 15px;
+    width: 280px;
+}
+
+#autocomplete-search {
+    height: 40px;
+    border-radius: 15px;
+    width: 290px;
+}
+
+#cat-nav {
+    padding-left: 20px;
+}
+.border {
+    border: 1px solid black;
+    border-top: 2px solid black;
 }
 
 .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle,

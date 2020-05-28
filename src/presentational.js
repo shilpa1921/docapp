@@ -12,17 +12,6 @@ export default function Presentational({ first, last, imageUrl, toggleModal }) {
             <div id="nav">
                 <Logo />
 
-                <div>
-                    <Link id="navbox" to="/doc-list">
-                        Doctor List
-                    </Link>
-                </div>
-
-                <div>
-                    <Link id="navbox" to="/category">
-                        Category
-                    </Link>
-                </div>
                 <Logout />
             </div>
         </div>

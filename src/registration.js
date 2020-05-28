@@ -53,7 +53,7 @@ export default class Registration extends React.Component {
                     className="input-field-div"
                     name="first"
                     autoComplete="off"
-                    placeholder="first"
+                    placeholder="First name"
                     required
                     onChange={(e) => this.handleChange(e)}
                 />
@@ -62,7 +62,7 @@ export default class Registration extends React.Component {
                     className="input-field-div"
                     name="last"
                     autoComplete="off"
-                    placeholder="last"
+                    placeholder="Last name"
                     required
                     onChange={(e) => this.handleChange(e)}
                 />
@@ -71,7 +71,7 @@ export default class Registration extends React.Component {
                     className="input-field-div"
                     name="dob"
                     autoComplete="off"
-                    placeholder="DOB"
+                    placeholder="DOB(YYYY-MM-DD)"
                     required
                     onChange={(e) => this.handleChange(e)}
                 />
@@ -86,11 +86,11 @@ export default class Registration extends React.Component {
                 />
                 <br></br>
                 <select
-                    className="input-field-div"
+                    className="input-field-div border"
                     name="patient_insurence"
                     onChange={(e) => this.handleChange(e)}
                 >
-                    <option>Do you have insurence card</option>
+                    <option>Do you have insurence </option>
                     <option value="yes">yes</option>
                     <option value="no">No</option>
                 </select>
@@ -98,7 +98,7 @@ export default class Registration extends React.Component {
                     className="input-field-div"
                     name="email"
                     autoComplete="off"
-                    placeholder="email"
+                    placeholder="Email"
                     required
                     onChange={(e) => this.handleChange(e)}
                 />
@@ -106,7 +106,7 @@ export default class Registration extends React.Component {
                 <input
                     className="input-field-div"
                     name="password"
-                    placeholder="password"
+                    placeholder="Password"
                     autoComplete="off"
                     type="password"
                     required
@@ -116,8 +116,7 @@ export default class Registration extends React.Component {
                 <button onClick={() => this.submit()}>Register!</button>
                 <HashRouter>
                     <div id="desc-link">
-                        You already have an account?{" "}
-                        <Link to="/login">You can log in here!</Link>
+                        Already a member? <Link to="/login">Log in here!</Link>
                     </div>
                 </HashRouter>
             </div>

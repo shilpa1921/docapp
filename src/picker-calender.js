@@ -9,19 +9,15 @@ import moment from "moment";
 import axios from "./axios";
 
 function CalenderShow({ id }) {
-    const [startDate, setStartDate] = useState(
-        setHours(setMinutes(new Date(), 30), 16)
-    );
+    const [startDate, setStartDate] = useState(new Date());
     const [excludeSlotState, setExcludeSlotState] = useState();
     const [minWorkingTime, setMinWorkingTime] = useState(
-        setHours(setMinutes(new Date(), 0), 0)
+        setHours(setMinutes(new Date(), 0), 7)
     );
     const [maxWorkingTime, setMaxWorkingTime] = useState(
-        setHours(setMinutes(new Date(), 0), 23)
+        setHours(setMinutes(new Date(), 0), 21)
     );
 
-    console.log("SHILPA hi hi hi");
-    console.log("id == ", id);
     const holidays = [new Date("2020-05-26"), new Date("2020-06-03")];
     const timeSlotResponse = [];
 
@@ -32,14 +28,14 @@ function CalenderShow({ id }) {
         const timeslot = [];
     };
 
-    var successMsg = false;
+    const [successMsg, setSuccessMsg] = useState(false);
     // setMyParam(new Date());
     function setMyParam(date) {
         console.log("inside setMYParam ", date);
         var slotMinute;
         var slotHour;
 
-        // setStartDate(date);
+        setStartDate(date);
         var onSelectDate = date;
         var classDate = new Date(onSelectDate);
         var doctor_id = id;
@@ -119,7 +115,8 @@ function CalenderShow({ id }) {
             .then((res) => {
                 console.log("response in appointment histroy", res);
                 if (res.data.success) {
-                    successMsg = true;
+                    setSuccessMsg(true);
+                    setStartDate(new Date());
                 }
             });
     }
@@ -142,17 +139,18 @@ function CalenderShow({ id }) {
                     excludeDates={holidays}
                     filterDate={isWeekday}
                     excludeTimes={excludeSlotState}
-                    dateFormat="MMMM d, yyyy h:mm aa"
-                    // placeholderText="Select a date between today and 5 days in the future"
+                    dateFormat="MMMM d, yyyy HH:mm aa"
                     withPortal
                 />
             </header>
-            <button id="confirmbtn " onClick={confirmAppointment}>
+            {successMsg && (
+                <p id="confirmMsg">
+                    Your appointment is confirmed and details sent to email id
+                </p>
+            )}
+            <button id="btn" onClick={confirmAppointment}>
                 Confirm appointment
             </button>
-            {successMsg && (
-                <h2>Your appointmnent timing is sent to your email id</h2>
-            )}
         </div>
     );
 }

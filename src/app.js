@@ -15,9 +15,6 @@ import DoctorPage from "./doc-page";
 
 import AutoFillAddress from "./auto-add";
 
-// import SearchLocation from "./knowYourLocation";
-// import LocationDemo from "./location";
-
 import { HashRouter, Link } from "react-router-dom";
 
 import FindDoctor from "./find-doc";
@@ -75,61 +72,57 @@ export default class App extends React.Component {
     render() {
         return (
             <div id="app-componenet">
-                <BrowserRouter>
-                    <Presentational
-                        first={this.state.first}
-                        last={this.state.last}
-                        imageUrl={this.state.imageUrl}
-                        toggleModal={() => this.toggleModal()}
-                    />
+                <div>
+                    <BrowserRouter>
+                        <Presentational
+                            first={this.state.first}
+                            last={this.state.last}
+                            imageUrl={this.state.imageUrl}
+                            toggleModal={() => this.toggleModal()}
+                        />
 
-                    <Route
-                        exact
-                        path="/"
-                        render={() => (
-                            <DoctorProfie
-                                first={this.state.first}
-                                last={this.state.last}
-                                qulification={this.state.quelification}
-                                city={this.state.city}
-                                imageUrl={this.state.imageUrl}
-                                toggleModal={() => this.toggleModal()}
-                            />
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                <DoctorProfie
+                                    first={this.state.first}
+                                    last={this.state.last}
+                                    qulification={this.state.quelification}
+                                    city={this.state.city}
+                                    imageUrl={this.state.imageUrl}
+                                    toggleModal={() => this.toggleModal()}
+                                />
+                            )}
+                        />
+
+                        <Route exact path="/user/:id" component={DoctorPage} />
+
+                        <Route exact path="/doc-list" component={FindDoctor} />
+
+                        <Route
+                            exact
+                            path="/doc-address"
+                            component={AutoFillAddress}
+                        />
+
+                        {this.state.uploaderIsVisible && (
+                            <div id="upload-container">
+                                <Uploader
+                                    methodInApp={this.methodInApp}
+                                    receivePicture={(arg) =>
+                                        this.receivePicture(arg)
+                                    }
+                                    toggleModal={() => this.toggleModal()}
+                                />
+                            </div>
                         )}
-                    />
-
-                    <Route exact path="/user/:id" component={DoctorPage} />
-                    {/* <Route
-                        exact
-                        path="/category"
-                        render={() => <Category id={this.state.id} />}
-                    /> */}
-                    <Route exact path="/doc-list" component={FindDoctor} />
-                    {/* 
-                    <Route
-                        exact
-                        path="/test-location"
-                        component={SearchLocation}
-                    /> */}
-                    <Route
-                        exact
-                        path="/doc-address"
-                        component={AutoFillAddress}
-                    />
-
-                    {this.state.uploaderIsVisible && (
-                        <div id="upload-container">
-                            <Uploader
-                                methodInApp={this.methodInApp}
-                                receivePicture={(arg) =>
-                                    this.receivePicture(arg)
-                                }
-                                toggleModal={() => this.toggleModal()}
-                            />
-                        </div>
-                    )}
-                    {/* <Footer /> */}
-                </BrowserRouter>
+                    </BrowserRouter>
+                </div>
+                {/* <div>
+                    {" "}
+                    <Footer />{" "}
+                </div> */}
             </div>
         );
     }
