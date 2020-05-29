@@ -84,7 +84,7 @@ class SearchLocation extends React.Component {
                         className="input-field"
                         ref="input"
                         type="text"
-                        placeholder="Nearby doctors"
+                        placeholder="Find a doctor near you!"
                     />
                 </form>
             </div>

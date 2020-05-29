@@ -98,7 +98,7 @@ export default class RegistrationDoctor extends React.Component {
                 <br></br>
                 <button onClick={() => this.submit()}>Register!</button>
                 <HashRouter>
-                    <div id="desc-link">
+                    <div>
                         Already a member?{" "}
                         <Link to="/log-doc">Log in here!</Link>
                     </div>

@@ -57,8 +57,8 @@ function AvailbilityShow() {
                 timeCaption="Time"
                 dateFormat="HH:mm"
                 timeFormat="HH:mm"
-            />
-            <p></p> To:{"  "}
+            />{" "}
+            <p></p>To:{"    "}
             <DatePicker
                 selected={endDate}
                 onChange={(date) => setEndDate(date)}

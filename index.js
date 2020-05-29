@@ -370,7 +370,7 @@ app.post("/findDoctor", (req, res) => {
     var lat = 0.0;
     var lng = 0.0;
     if (req.body.user) {
-        db.getMatchingDoctors(req.body.user).then((results) => {
+        db.getMatchingDoctors(req.body.user, lat, lng).then((results) => {
             console.log("results in findpeople search", results.rows);
             res.json(results.rows);
         });

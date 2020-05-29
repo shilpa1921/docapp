@@ -64,13 +64,17 @@ export default class LoginDoctor extends React.Component {
                 <br></br>
                 <button onClick={() => this.submit()}>Log in!</button>
                 <HashRouter>
-                    <div id="register">
+                    <div>
                         If you are not member?{" "}
-                        <Link to="/reg-doc">Register here!</Link>
+                        <Link className="remove-underline" to="/reg-doc">
+                            Register here!
+                        </Link>
                     </div>
-                    <div id="reset">
+                    <div>
                         Forget your password?{" "}
-                        <Link to="/resetpassdoc">Click to reset!</Link>
+                        <Link className="remove-underline" to="/resetpassdoc">
+                            Click to reset!
+                        </Link>
                     </div>
                 </HashRouter>
             </div>

@@ -46,30 +46,43 @@ main {
     /* color: darkred; */
     color: white;
 }
+
 #main-page {
     display: grid;
-    height: 200px;
+    /* height: 200px; */
     grid-template-columns: 1fr 1fr;
-    grid-gap: 30px;
+    grid-gap: 80px;
+    margin-top: 50px;
+}
+
+#main-page-align {
+    align-items: center;
+}
+
+#main-page-heading-font {
+    font-family: Bradley Hand, cursive;
+    margin-top: 0;
 }
 
 #main-page-link {
     font-size: 20px;
     font-weight: 500;
-}
-#doc-box {
-    border: darkkhaki solid 2px;
-    /* background-color: rgb(133, 189, 31, 0.5); */
-    background-color: white;
-    border-radius: 15px;
-    padding: 20px;
+    text-decoration: none;
 }
 
-#doc-box h1 {
-    color: #045050;
-    font-size: 20px;
+#main-page-box h4 {
+    margin-left: 5px;
 }
-#pat-box h1 {
+
+.landing-page-icon {
+    height: 50px;
+    width: 50px;
+}
+.landing-page-icon-center {
+    text-align: center;
+}
+
+#main-page-box h1 {
     color: #045050;
     font-size: 20px;
 }
@@ -77,7 +90,7 @@ main {
 .h1-colour-size {
     color: #045050;
 }
-#pat-box {
+#main-page-box {
     /* border: darkkhaki solid 2px; */
     border-radius: 15px;
     /* background-color: rgb(133, 189, 31, 0.5); */
@@ -103,7 +116,7 @@ main {
     background-color: white;
     /* background-color: rgb(133, 189, 31, 0.5); */
     border-radius: 15px;
-    border: darkkhaki solid 2px;
+    /* border: darkkhaki solid 2px; */
 
     padding: 25px;
 }
@@ -113,9 +126,10 @@ main {
     /* background-color: rgb(133, 189, 31, 0.5); */
     background-color: white;
     border-radius: 15px;
-    border: rgb(148, 148, 148) solid 2px;
+    /* border: rgb(148, 148, 148) solid 2px; */
     margin-right: 60px;
     padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .input-field-div {
@@ -159,10 +173,6 @@ button {
     font-size: 17px;
     cursor: pointer;
     border-radius: 10px;
-}
-
-#desc-link {
-    font-size: 20px;
 }
 
 #password-reset {
@@ -289,6 +299,7 @@ button {
     /* border: 1px solid #5fc2ff; */
     margin-top: 20px;
 }
+
 #nav {
     display: grid;
     grid-template-columns: 1fr 100px;
@@ -388,6 +399,9 @@ button {
     border-top: 2px solid black;
 }
 
+.remove-underline {
+    text-decoration: none;
+}
 .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle,
 .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle,
 .react-datepicker__year-read-view--down-arrow,

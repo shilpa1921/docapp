@@ -64,13 +64,17 @@ export default class Login extends React.Component {
                 <br></br>
                 <button onClick={() => this.submit()}>Log in!</button>
                 <HashRouter>
-                    <div id="register">
+                    <div>
                         If you are not member?{" "}
-                        <Link to="/registartion">Register here!</Link>
+                        <Link className="remove-underline" to="/registartion">
+                            Register here!
+                        </Link>
                     </div>
-                    <div id="reset">
+                    <div>
                         Forget your password?{" "}
-                        <Link to="/resetpassword">Click here!</Link>
+                        <Link className="remove-underline" to="/resetpassword">
+                            Click here!
+                        </Link>
                     </div>
                 </HashRouter>
             </div>

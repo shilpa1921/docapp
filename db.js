@@ -167,10 +167,16 @@ module.exports.saveProfilePic = (user_id, url) => {
     );
 };
 
-module.exports.getMatchingDoctors = (val) => {
+module.exports.getMatchingDoctors = (val, lat, lng) => {
     return db.query(
-        `SELECT * FROM doctor_info WHERE first_name ILIKE $1 OR last_name ILIKE $1;`,
-        [val + "%"]
+        `  SELECT doctor_info.*, doctor_address.*, specialization.specialization_name, ROUND(CAST(SQRT(
+    POW(69.1 * (latitude - $2), 2) +
+    POW(69.1 * ($3 - longitude) * COS(latitude / 57.3), 2)) as numeric), 2) AS distance 
+FROM 
+doctor_info INNER JOIN doctor_address ON doctor_info.id = doctor_address.doctor_id 
+INNER JOIN specialization ON doctor_info.specialization_id = specialization.id
+ WHERE doctor_info.first_name ILIKE $1 OR doctor_info.last_name ILIKE $1;`,
+        [val + "%", lat, lng]
     );
 };
 

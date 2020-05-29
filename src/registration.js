@@ -116,7 +116,7 @@ export default class Registration extends React.Component {
                 <button onClick={() => this.submit()}>Register!</button>
                 <HashRouter>
                     <div id="desc-link">
-                        Already a member? <Link to="/login">Log in here!</Link>
+                        Already a member? <Link to="/login">Login here!</Link>
                     </div>
                 </HashRouter>
             </div>
