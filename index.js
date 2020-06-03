@@ -385,18 +385,12 @@ app.post("/findDoctor", (req, res) => {
 app.post("/category", (req, res) => {
     console.log("req.body in category", req.body);
 
-    // var category = req.body.cat;
-    // if (category == "all") {
-    //     db.recentjoiners().then((result) => {
-    //         console.log("results in findpeople", result.rows);
-    //         res.json(result.rows);
-    //     });
-    // } else {
-    //     db.searchByCategory(category).then((result) => {
-    //         console.log("result in category", result);
-    //         res.json(result.rows);
-    //     });
-    // }
+    var category_id = req.body.cat;
+
+    db.searchByCategory(category_id).then((result) => {
+        console.log("result in category111", result);
+        res.json(result.rows);
+    });
 });
 app.post("/category-1", (req, res) => {
     db.recentjoiners().then((result) => {
@@ -609,14 +603,32 @@ app.post("/appointment-histroy", (req, res) => {
         let to = result.rows[0].email;
         let subject = "Appointment Confirmation";
         let text =
+            "Hello" +
+            " " +
+            result.rows[0].first_name +
+            " " +
+            result.rows[0].last_name +
+            " ," +
+            "\n" +
             "You have an appointment on" +
+            " " +
             appDate +
             " " +
+            "at" +
+            " " +
             appTime +
-            "with Dr" +
+            " " +
+            "\n" +
+            "Doctor name:" +
+            " " +
             first +
-            "     " +
-            last;
+            " " +
+            last +
+            "\n" +
+            "\n" +
+            "Thank you" +
+            "\n" +
+            "docapp team";
         console.log("info of send email", to, subject, text);
         ses.sendEmail(to, subject, text);
     });

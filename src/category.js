@@ -28,9 +28,7 @@ export default class Category extends React.Component {
         console.log("value in button", cat);
         axios.post("/category", { cat }).then((res) => {
             console.log("response in category", res);
-            // this.setState({
-            //     user: res.data,
-            // });
+            this.props.searchResult(res.data);
             console.log("response in category after setstate", this.state.user);
         });
     }
@@ -68,7 +66,7 @@ export default class Category extends React.Component {
                         //     this.submit(e);
                         // }}
                     >
-                        <option>Please enter your specialization</option>
+                        <option>Search by specialist</option>
                         {this.state.specializationList.map((list) => (
                             <option key={list.id} value={list.id}>
                                 {list.specialization_name}

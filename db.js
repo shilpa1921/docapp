@@ -180,6 +180,27 @@ INNER JOIN specialization ON doctor_info.specialization_id = specialization.id
     );
 };
 
+module.exports.searchByCategory = (category_id) => {
+    return db
+        .query(
+            `SELECT doctor_info.*, doctor_address.*, specialization.specialization_name 
+            FROM doctor_info 
+            INNER JOIN doctor_address 
+            ON doctor_info.id = doctor_address.doctor_id 
+            INNER JOIN specialization 
+            ON doctor_info.specialization_id = specialization.id 
+            WHERE specialization.id = $1 ;`,
+            [category_id]
+        )
+        .then((results) => {
+            console.log("result from getpass in db.js", results);
+            return results;
+        })
+        .catch((err) => {
+            console.log("errrrrrrr in category", err);
+        });
+};
+
 // module.exports.allDoctors = () => {
 //     return db.query(
 //         `SELECT doctor_info.*, doctor_address.*, specialization.specialization_name FROM doctor_info INNER JOIN doctor_address ON doctor_info.id = doctor_address.doctor_id INNER JOIN specialization ON doctor_info.specialization_id = specialization.id ORDER BY doctor_info.id DESC LIMIT 3 `
@@ -195,7 +216,7 @@ module.exports.allDoctors = (lat, lng) => {
 FROM 
 doctor_info INNER JOIN doctor_address ON doctor_info.id = doctor_address.doctor_id 
 INNER JOIN specialization ON doctor_info.specialization_id = specialization.id
-ORDER BY distance LIMIT 3
+ORDER BY distance
         `,
         [lat, lng]
     );
@@ -274,7 +295,7 @@ module.exports.getDoctorWorkingHours = (doctor_id) => {
 };
 
 module.exports.getEmailId = (pat_id) => {
-    return db.query(`SELECT email FROM patient_info WHERE id = $1;`, [pat_id]);
+    return db.query(`SELECT * FROM patient_info WHERE id = $1;`, [pat_id]);
 };
 
 module.exports.getInfoDocForMail = (doc_id) => {

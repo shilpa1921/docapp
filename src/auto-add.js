@@ -16,7 +16,7 @@ class AutoFillAddress extends React.Component {
             // types: ["(regions)"],
             componentRestrictions: { country: "de" },
         };
-        var input = document.getElementById("autocomplete");
+        var input = document.getElementById("autocomplete1");
         this.autocomplete = new google.maps.places.Autocomplete(input, options);
         this.autocomplete.addListener("place_changed", this.handlePlaceSelect);
     }
@@ -86,7 +86,7 @@ class AutoFillAddress extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <input
                         className="input-field-div"
-                        id="autocomplete"
+                        id="autocomplete1"
                         ref="input"
                         type="text"
                     />

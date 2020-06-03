@@ -5,6 +5,7 @@
   DROP TABLE IF EXISTS doctor_address CASCADE;
   DROP TABLE IF EXISTS reset_codes CASCADE;
   DROP TABLE IF EXISTS reset_codes_doc CASCADE;
+  DROP TABLE IF EXISTS appointment_history CASCADE;
 
 
    
@@ -75,11 +76,7 @@ CREATE TABLE doctor_availability(
       longitude FLOAT,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
  );
- INSERT INTO  doctor_address (doctor_id, street, house_no, city, state,country,pincode, latitude, longitude )
-    VALUES (1, 'Hirtestrase', '106', 'Berlin', 'Berlin', 'Germany', '12555', 52.456786554, 13.2345677);
 
-INSERT INTO  doctor_address (doctor_id, street, house_no, city, state,country,pincode, latitude, longitude )
-    VALUES (2, 'J P nagar', '16', 'Banglore', 'banglore', 'India', '12344', 51.456786554, 11.2345677);
 
 
     CREATE TABLE specialization(

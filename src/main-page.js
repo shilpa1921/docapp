@@ -10,7 +10,7 @@ export default function Welcome() {
     return (
         <div id="main-page-align">
             <h1 id="main-page-heading-font">
-                Help me to book your doctor appointment<br></br>or<br></br>to
+                Help you to book your doctor appointment<br></br>or<br></br>to
                 bring your health care services online
             </h1>
             <div id="main-page">

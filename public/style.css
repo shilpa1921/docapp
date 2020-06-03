@@ -263,6 +263,7 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr 300px;
     margin-bottom: 20px;
+    margin-top: 30px;
 }
 
 #user-location {
@@ -385,7 +386,7 @@ button {
     width: 280px;
 }
 
-#autocomplete-search {
+#autocomplete {
     height: 40px;
     border-radius: 15px;
     width: 290px;
@@ -397,6 +398,23 @@ button {
 .border {
     border: 1px solid black;
     border-top: 2px solid black;
+}
+
+#img-in-map {
+    height: 70px;
+
+    width: 70px;
+}
+#link-in-infoWindow {
+    text-decoration: none;
+}
+
+#info-wimdow {
+    height: 150px;
+    width: 300px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 800;
 }
 
 .remove-underline {

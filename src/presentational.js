@@ -10,7 +10,9 @@ export default function Presentational({ first, last, imageUrl, toggleModal }) {
     return (
         <div id="present">
             <div id="nav">
-                <Logo />
+                <Link to="/doc-list">
+                    <Logo />
+                </Link>
 
                 <Logout />
             </div>

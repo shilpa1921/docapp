@@ -11,7 +11,7 @@ import DoctorPage from "./doc-page";
 // import Logout from "./logout";
 
 // import Category from "./category";
-// import Footer from "./footer";
+// import MapWrapper from "./google-map-comp.js";
 
 import AutoFillAddress from "./auto-add";
 
@@ -99,6 +99,7 @@ export default class App extends React.Component {
                         <Route exact path="/user/:id" component={DoctorPage} />
 
                         <Route exact path="/doc-list" component={FindDoctor} />
+                        {/* <Route exact path="/map" component={MapWrapper} /> */}
 
                         <Route
                             exact

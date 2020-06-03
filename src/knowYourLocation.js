@@ -80,7 +80,7 @@ class SearchLocation extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <input
                         className="search-btn"
-                        id="autocomplete-search"
+                        id="autocomplete"
                         className="input-field"
                         ref="input"
                         type="text"

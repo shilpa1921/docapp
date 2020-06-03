@@ -8,6 +8,7 @@ import SearchLocation from "./knowYourLocation";
 import Category from "./category";
 
 import ReactDOM from "react-dom";
+import DoctorsMapContainer from "./DoctorMapContainer";
 
 export default function FindPeople() {
     const [user, setUser] = useState("");
@@ -16,12 +17,17 @@ export default function FindPeople() {
     const [search, setSearch] = useState(false);
     const [dist, setDist] = useState(false);
     const [more, setMore] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         let abort;
         console.log("useEffect runs!");
         axios.post("/findDoctor", { user }).then(({ data }) => {
             console.log("data from flame egg: ", data);
+            if (data.length == 0) {
+                setError(true);
+                setSearch(false);
+            }
 
             if (!abort) {
                 setUsers(data);
@@ -29,6 +35,7 @@ export default function FindPeople() {
         });
         if (user == "") {
             setSearch(false);
+            setError(false);
             setNewarriver(true);
         }
 
@@ -37,7 +44,10 @@ export default function FindPeople() {
         };
     }, [user]);
     function searchResult(arg) {
-        console.log("shilpa in search result ", arg);
+        console.log("shilpa in search result ", arg.length);
+        if (arg.length == 0) {
+            setError(true);
+        }
 
         setDist(true);
         setUsers(arg);
@@ -71,10 +81,13 @@ export default function FindPeople() {
                 console.log("Error in POST /get-more: ", err);
             });
     };
-
+    var arr1 = [];
+    arr1.push(...users);
     return (
         <div id="find-doc">
             {/* <p>Search By Doctor !!</p> */}
+            <DoctorsMapContainer users={arr1} />
+
             <div id="input-icon">
                 <div>
                     <input
@@ -103,12 +116,15 @@ export default function FindPeople() {
                     />
                 </div>
                 <div>
-                    <Category />
+                    <Category
+                        searchResult={(arg) => {
+                            searchResult(arg);
+                        }}
+                    />
                 </div>
             </div>
-
             {search && <p>Doctor to whom you searched</p>}
-
+            {error && <h3>No results found</h3>}
             <div>
                 {users.map((user) => (
                     <div id="findPeople" key={user.id}>
@@ -135,7 +151,7 @@ export default function FindPeople() {
                 ))}
             </div>
             <div id="seemore">
-                {more && <button onClick={(e) => seeMore(e)}>See More</button>}
+                {/* {more && <button onClick={(e) => seeMore(e)}>See More</button>} */}
             </div>
         </div>
     );

@@ -38,27 +38,23 @@ export default function DisplayDocInfo({
             <div id="list">
                 <p>
                     {" "}
-                    Dr.{first} {last}, {qualification}
+                    Dr.{first} {last}
                 </p>
                 <p>
-                    <strong>Spec:</strong>
-                    {specialization_name}
+                    <strong>Spec:</strong> {specialization_name}
                 </p>
                 <p>
-                    <strong>Qual:</strong>
-                    {qualification}
+                    <strong>Qual:</strong> {qualification}
                 </p>
                 <p>
-                    <strong>Add:</strong>
-                    {street} {house_no}
+                    <strong>Add:</strong> {street} {house_no}
                     <br></br>
                     {"  "}
                     {city} {pincode}
                 </p>
                 {dist && (
                     <p>
-                        <strong>Dist:</strong>
-                        {distance}mi
+                        <strong>Dist:</strong> {distance}mi
                     </p>
                 )}
             </div>
