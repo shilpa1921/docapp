@@ -667,6 +667,6 @@ app.post("/morePost", (req, res) => {
         });
 });
 
-app.listen(8080, function () {
+app.listen(process.env.PORT || 8080, function () {
     console.log("I'm listening.");
 });
