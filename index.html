@@ -3,12 +3,19 @@
 <link rel="stylesheet" href="/style.css" />
 <main></main>
 <footer id="footer"><p>© docapp 2020-2021</p></footer>
-<!-- <script
+<script
     type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHhjD6KPkaJVZSpC9piLKHdDpma-4si10
+    src="https://maps.googleapis.com/maps/api/js?key=dummy
 
 &libraries=places"
-></script> -->
+></script>
+
+<script type="text/javascript">
+    console.log("%AWS_KEY%");
+    console.log("%process.env.AWS_KEY%");
+    console.log(process.env.AWS_KEY);
+</script>
+
 <script
     type="text/javascript"
     src="https://js.api.here.com/v3/3.1/mapsjs-core.js"

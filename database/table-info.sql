@@ -104,12 +104,14 @@ INSERT INTO  specialization (specialization_name) VALUES ('Audiologist');
 INSERT INTO  specialization (specialization_name) VALUES ('Bariatric Physician');
 INSERT INTO  specialization (specialization_name) VALUES ('Cardiac Electrophysiologist');
 INSERT INTO  specialization (specialization_name) VALUES ('Cardiologist');
+
 INSERT INTO  specialization (specialization_name) VALUES ('Cardiothoracic Surgeon');
 INSERT INTO  specialization (specialization_name) VALUES ('Chiropractor');
 INSERT INTO  specialization (specialization_name) VALUES ('Colorectal Surgeon');
 INSERT INTO  specialization (specialization_name) VALUES ('Dentist');
 INSERT INTO  specialization (specialization_name) VALUES ('Dermatologist');
 INSERT INTO  specialization (specialization_name) VALUES ('Dietitian');
+
 INSERT INTO  specialization (specialization_name) VALUES ('Ear, Nose and Throat Doctor');
 INSERT INTO  specialization (specialization_name) VALUES ('Emergency Medicine Physician');
 INSERT INTO  specialization (specialization_name) VALUES ('Endocrinologist');
@@ -117,10 +119,12 @@ INSERT INTO  specialization (specialization_name) VALUES ('Endodontist');
 INSERT INTO  specialization (specialization_name) VALUES ('Family Physician');
 INSERT INTO  specialization (specialization_name) VALUES ('Gastroenterologist');
 INSERT INTO  specialization (specialization_name) VALUES ('Geneticist');
+
 INSERT INTO  specialization (specialization_name) VALUES ('Geriatrician');
 INSERT INTO  specialization (specialization_name) VALUES ('Hand Surgeon');
 INSERT INTO  specialization (specialization_name) VALUES ('Hematologist');
 INSERT INTO  specialization (specialization_name) VALUES ('Immunologist');
+
 INSERT INTO  specialization (specialization_name) VALUES ('Infectious Disease Specialist');
 INSERT INTO  specialization (specialization_name) VALUES ('Integrative Health Medicine Specialist');
 INSERT INTO  specialization (specialization_name) VALUES ('Internist');
