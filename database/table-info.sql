@@ -28,7 +28,7 @@ CREATE TABLE doctor_availability(
     availability_sunday BOOLEAN DEFAULT FALSE,
     visiting_hours_from VARCHAR NOT NULL,
     visiting_hours_to VARCHAR NOT NULL,
-    vaction VARCHAR
+    vacation  VARCHAR
 
 );
 

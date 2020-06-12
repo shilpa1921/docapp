@@ -86,7 +86,7 @@ export default function FindPeople() {
     return (
         <div id="find-doc">
             {/* <p>Search By Doctor !!</p> */}
-            <DoctorsMapContainer users={arr1} />
+            {/* <DoctorsMapContainer users={arr1} /> */}
 
             <div id="input-icon">
                 <div>
