@@ -26,7 +26,7 @@ export default class LocationDemo extends Component {
 
                     longitude: position.coords.longitude,
                 });
-                Geocoder.init("dummy");
+                Geocoder.init("AIzaSyBHhjD6KPkaJVZSpC9piLKHdDpma-4si10");
 
                 Geocoder.from(
                     position.coords.latitude,
