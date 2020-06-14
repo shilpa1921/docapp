@@ -13,7 +13,7 @@ const DoctorsMap = withScriptjs(
                     lat: doctor.latitude,
                     lng: doctor.longitude,
                 }}
-                icon={"./old_logo.png"}
+                icon={"./old_logo1.png"}
             />
         ));
 
