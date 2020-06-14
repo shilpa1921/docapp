@@ -134,6 +134,7 @@ INSERT INTO  specialization (specialization_name) VALUES ('Midwife');
 INSERT INTO  specialization (specialization_name) VALUES ('Naturopathic Doctor');
 INSERT INTO  specialization (specialization_name) VALUES ('Nephrologist');
 INSERT INTO  specialization (specialization_name) VALUES ('Neurologist');
+
 INSERT INTO  specialization (specialization_name) VALUES ('Neuropsychiatrist');
 INSERT INTO  specialization (specialization_name) VALUES ('Neurosurgeon');
 INSERT INTO  specialization (specialization_name) VALUES ('Nurse Practitioner');
@@ -141,6 +142,7 @@ INSERT INTO  specialization (specialization_name) VALUES ('Nutritionist');
 INSERT INTO  specialization (specialization_name) VALUES ('OB-GYN');
 INSERT INTO  specialization (specialization_name) VALUES ('Occupational Medicine Specialist');
 INSERT INTO  specialization (specialization_name) VALUES ('Oncologist');
+
 INSERT INTO  specialization (specialization_name) VALUES ('Ophthalmologist');
 INSERT INTO  specialization (specialization_name) VALUES ('Optometrist');
 INSERT INTO  specialization (specialization_name) VALUES ('Oral Surgeon');
@@ -148,18 +150,21 @@ INSERT INTO  specialization (specialization_name) VALUES ('Orthodontist');
 INSERT INTO  specialization (specialization_name) VALUES ('Orthopedic Surgeon');
 INSERT INTO  specialization (specialization_name) VALUES ('Pain Management Specialist');
 INSERT INTO  specialization (specialization_name) VALUES ('Pathologist');
+
 INSERT INTO  specialization (specialization_name) VALUES ('Pediatric Dentist');
 INSERT INTO  specialization (specialization_name) VALUES ('Pediatrician');
 INSERT INTO  specialization (specialization_name) VALUES ('Periodontist');
 INSERT INTO  specialization (specialization_name) VALUES ('Physiatrist');
 INSERT INTO  specialization (specialization_name) VALUES ('Physical Therapist');
 INSERT INTO  specialization (specialization_name) VALUES ('Physician Assistant');
+
 INSERT INTO  specialization (specialization_name) VALUES ('Plastic Surgeon');
 INSERT INTO  specialization (specialization_name) VALUES ('Podiatrist');
 INSERT INTO  specialization (specialization_name) VALUES ('Preventive Medicine Specialist');
 INSERT INTO  specialization (specialization_name) VALUES ('Primary Care Doctor');
 INSERT INTO  specialization (specialization_name) VALUES ('Prosthodontist');
 INSERT INTO  specialization (specialization_name) VALUES ('Psychiatrist');
+
 INSERT INTO  specialization (specialization_name) VALUES ('Psychologist');
 INSERT INTO  specialization (specialization_name) VALUES ('Psychosomatic Medicine Specialist');
 INSERT INTO  specialization (specialization_name) VALUES ('Psychotherapist');
@@ -168,6 +173,7 @@ INSERT INTO  specialization (specialization_name) VALUES ('Radiation Oncologist'
 INSERT INTO  specialization (specialization_name) VALUES ('Radiologist');
 INSERT INTO  specialization (specialization_name) VALUES ('Reproductive Endocrinologist');
 INSERT INTO  specialization (specialization_name) VALUES ('Rheumatologist');
+
 INSERT INTO  specialization (specialization_name) VALUES ('Sleep Medicine Specialist');
 INSERT INTO  specialization (specialization_name) VALUES ('Sports Medicine Specialist');
 INSERT INTO  specialization (specialization_name) VALUES ('Surgeon');
