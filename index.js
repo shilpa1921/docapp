@@ -365,6 +365,7 @@ app.post("/user/:id", (req, res) => {
 });
 
 app.post("/findDoctor", (req, res) => {
+    console.log("shilpa varible", process.env);
     console.log("shilpa in find people", req.body.user);
     let id = req.session.userId;
     var lat = 0.0;

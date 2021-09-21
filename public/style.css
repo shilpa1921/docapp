@@ -1,5 +1,4 @@
 body {
-    /* background-color: rgb(241, 227, 192, 0.2); */
     background-color: #04a5a5;
     color: #045050;
     font-family: "Courier New", Courier, monospace;
@@ -255,9 +254,6 @@ button {
 
 #p-loc {
     margin: 0;
-    /* background-color: white; */
-    /* border-radius: 15px; */
-    /* border: 2px solid black; */
 }
 #input-icon {
     display: grid;

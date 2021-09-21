@@ -11,7 +11,7 @@ import DoctorPage from "./doc-page";
 // import Logout from "./logout";
 
 // import Category from "./category";
-// import MapWrapper from "./google-map-comp.js";
+// import Map  Wrapper from "./google-map-comp.js";
 
 import AutoFillAddress from "./auto-add";
 
